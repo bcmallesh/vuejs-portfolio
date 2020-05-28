@@ -12,7 +12,7 @@ class AuthenticationService {
     // }
 
     executeJwtAuthenticationService(username, password) {
-        console.log(username);
+       // console.log(username);
         return axios.post(`${API_URL}/login`, {
             username,
             password
