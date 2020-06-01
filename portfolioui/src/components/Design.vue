@@ -2,16 +2,21 @@
 
     <div class="portfolio col-lg-3 col-md-6 uxdesign webapplication">
                                     <figure class="portfolio-image">
-                                        <img src="../assets/thumb32.png" alt="CxCalibration" class="img-responsive">
+                                        <img src="design.path" alt="CxCalibration" class="img-responsive">
                                         <figcaption class="caption">
                                             <div class="caption-content">
-                                                <h3 class="portfolio-item-title text-center sub-title">Inventive Design</h3>
-                                                <p>Building a Customer-Centric Organization</p>
+                                                <h3 class="portfolio-item-title text-center sub-title">{{design.name}}</h3>
+                                                <p>{{design.description | design.id}}</p>
                                             </div>
                                         </figcaption>
                                     </figure>
                                 </div>
 </template>
+<script>
+export default {
+  props : ['design']
+}
+</script>
 
 <style>
 :root {

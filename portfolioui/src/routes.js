@@ -13,6 +13,11 @@ const router = new Router({
             component: () => import("./components/Designs"),
         },
         {
+            path: "/digital",
+            name: "Digital",
+            component: () => import("./components/Digital"),
+        },
+        {
             path: "/login",
             name: "Login",
             component: () => import("./components/Login"),

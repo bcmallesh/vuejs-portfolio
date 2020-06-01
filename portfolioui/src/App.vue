@@ -5,9 +5,13 @@
 </template>
 
 <script>
-
+import designs from './source'
 export default {
   name: 'app',
+  created(){
+    console.log(designs);
+    this.$store.dispatch('init_designs',designs)
+  }
 }
 </script>
 
