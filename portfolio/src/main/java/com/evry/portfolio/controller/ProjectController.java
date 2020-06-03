@@ -32,7 +32,7 @@ public class ProjectController {
 	public ProjectDto getProjectById(@PathVariable(value = "id") Long id) {
 		return projectService.findById(id);
 	}
-
+	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/createproject", method = RequestMethod.POST)
 	public ProjectDto saveProject(@RequestBody ProjectDto project) {
@@ -43,7 +43,7 @@ public class ProjectController {
 	@RequestMapping(value = "/updateproject/{id}", method = RequestMethod.PUT)
 	public ProjectDto updateProject(@PathVariable(value = "id") Long id, @RequestBody ProjectDto project) {
 		project.setId(id);
-		return projectService.save(project);
+		return projectService.update(project);
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")

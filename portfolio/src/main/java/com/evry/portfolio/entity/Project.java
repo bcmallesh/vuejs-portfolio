@@ -19,6 +19,9 @@ public class Project {
     @Column(name = "PROJECT_NAME")
     private String projectName;
 
+    @Column(name = "INDUSTRY")
+    private String industry;
+
 	public Long getId() {
 		return id;
 	}
@@ -35,4 +38,15 @@ public class Project {
 		this.projectName = projectName;
 	}
 
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	
+
+	
 }

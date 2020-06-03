@@ -22,7 +22,6 @@ public class ProjectInformationController {
 	private ProjectInformationService projectInformationService;
 	
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/projectsinfo", method = RequestMethod.GET)
 	public List<ProjectInformationDto> projectsInfoList() {
 		return projectInformationService.findAll();

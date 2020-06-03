@@ -19,7 +19,7 @@ public class FileStroreUtil {
 		String path = webappPath+env1.getProperty("images.path");
 
 		  File folder = new File(path);
-		File subfolder = new File(webappPath+env1.getProperty("images.path.shop"));
+		File subfolder = new File(webappPath+env1.getProperty("images.path.projectinfo"));
 		  System.out.println("Create Folder - "+folder.getPath());
 		  //Make the Folder
 		  if(!folder.isDirectory()){

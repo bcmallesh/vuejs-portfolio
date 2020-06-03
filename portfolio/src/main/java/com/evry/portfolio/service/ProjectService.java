@@ -12,4 +12,5 @@ public interface ProjectService {
     List<ProjectDto> findAll();
     void delete(long id);
     ProjectDto findById(Long id);
+    ProjectDto findByName(String name);
 }

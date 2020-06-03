@@ -24,7 +24,9 @@ public class ProjectServiceImpl implements ProjectService {
 			ProjectDto dto = new ProjectDto();
 
 			dto.setId(project.getId());
-			dto.setProjectName(project.getProjectName());
+			dto.setName(project.getProjectName());
+			dto.setIndustry(project.getIndustry());
+
 			
 			list.add(dto);
 
@@ -44,20 +46,24 @@ public class ProjectServiceImpl implements ProjectService {
 		Project project = projectDao.findById(id).get();
 		ProjectDto projectDto = new ProjectDto();
 		projectDto.setId(project.getId());
-		projectDto.setProjectName(project.getProjectName());
+		projectDto.setName(project.getProjectName());
+		projectDto.setIndustry(project.getIndustry());
+
 		return projectDto;
 	}
 
 	@Override
 	public ProjectDto save(ProjectDto projectDto) {
 		Project projectEntity = new Project();
-		projectEntity.setProjectName(projectDto.getProjectName());
+		projectEntity.setProjectName(projectDto.getName());
+		projectEntity.setIndustry(projectDto.getIndustry());
 
 		Project createdProjectEntity = projectDao.save(projectEntity);
 
 		ProjectDto pdto = new ProjectDto();
 		pdto.setId(createdProjectEntity.getId());
-		pdto.setProjectName(createdProjectEntity.getProjectName());
+		pdto.setName(createdProjectEntity.getProjectName());
+		pdto.setIndustry(createdProjectEntity.getIndustry());
 
 		return pdto;
 	}
@@ -66,13 +72,27 @@ public class ProjectServiceImpl implements ProjectService {
 	public ProjectDto update(ProjectDto projectDto) {
 
 		Project projectEntity = projectDao.findById(projectDto.getId()).get();
-		projectEntity.setProjectName(projectDto.getProjectName());
+		projectEntity.setProjectName(projectDto.getName());
+		projectEntity.setIndustry(projectDto.getIndustry());
 
 		Project createdProjectEntity = projectDao.save(projectEntity);
 
 		ProjectDto pdto = new ProjectDto();
 		pdto.setId(createdProjectEntity.getId());
-		pdto.setProjectName(createdProjectEntity.getProjectName());
+		pdto.setName(createdProjectEntity.getProjectName());
+		pdto.setIndustry(createdProjectEntity.getIndustry());
+
 		return pdto;
+	}
+	@Override
+	public ProjectDto findByName(String name) {
+
+		Project project = projectDao.findByName(name);
+		ProjectDto projectDto = new ProjectDto();
+		projectDto.setId(project.getId());
+		projectDto.setName(project.getProjectName());
+		projectDto.setIndustry(project.getIndustry());
+
+		return projectDto;
 	}
 }
