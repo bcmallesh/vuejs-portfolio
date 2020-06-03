@@ -1,6 +1,6 @@
 <template>
 
-    <div class="portfolio col-lg-3 col-md-6 uxdesign webapplication">
+    <div class="portfolio col-lg-3 col-md-6 " v-bind:class="[design.industry , design.work , design.type ]">
                                     <figure class="portfolio-image">
                                         <img :src="require('@/assets/' + design.image + '')" alt="CxCalibration" class="img-responsive">
                                         <figcaption class="caption">
