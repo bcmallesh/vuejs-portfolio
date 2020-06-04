@@ -1,26 +1,28 @@
 <template>
-
-    <div class="portfolio col-lg-3 col-md-6 " v-bind:class="[design.industry , design.work , design.type ]">
-                                    <figure class="portfolio-image">
-                                        <img :src="design.imagePath" alt="CxCalibration" class="img-responsive">
-                                        <figcaption class="caption">
-                                            <div class="caption-content">
-                                                <h3 class="portfolio-item-title text-center sub-title">{{design.name}}</h3>
-                                                <p>{{design.description | design.id}}</p>
-                                            </div>
-                                        </figcaption>
-                                    </figure>
-                                </div>
+  <div
+    class="portfolio col-lg-3 col-md-6"
+    v-bind:class="[design.industry , design.work , design.type ]"
+  >
+    <figure class="portfolio-image">
+      <img :src="design.imagePath" alt="CxCalibration" class="img-responsive" />
+      <figcaption class="caption">
+        <div class="caption-content">
+          <h3 class="portfolio-item-title text-center sub-title">{{design.name}}</h3>
+          <p>{{design.description | design.id}}</p>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
 </template>
 <script>
 export default {
-  props : ['design']
-}
+  props: ['design']
+};
 </script>
 
 <style>
 :root {
-  --main-color:#7028B7;
+  --main-color: #7028b7;
 }
 
 .modal-dialog,
@@ -167,8 +169,10 @@ body {
   -webkit-transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
   transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 24px;
-  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11), 0 12px 90px 0 rgba(103, 151, 255, 0.11);
-          box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11), 0 12px 90px 0 rgba(103, 151, 255, 0.11);
+  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
+    0 12px 90px 0 rgba(103, 151, 255, 0.11);
+  box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
+    0 12px 90px 0 rgba(103, 151, 255, 0.11);
 }
 
 .main-box .filter {
@@ -213,7 +217,7 @@ body {
   width: 100%;
   height: 100%;
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
   -webkit-transition: all 0.9s ease;
   transition: all 0.9s ease;
   position: relative;
@@ -221,12 +225,12 @@ body {
 
 .portfolio-image:hover img {
   -webkit-transform: scale(1.3);
-          transform: scale(1.3);
+  transform: scale(1.3);
   cursor: pointer;
 }
 
 .portfolio-image::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 100%;
@@ -243,7 +247,7 @@ body {
   cursor: pointer;
   opacity: 0;
   -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  transform: scale(1.2);
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   z-index: 999;
@@ -266,16 +270,16 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   color: #fff !important;
   padding: 20px;
 }
@@ -290,7 +294,7 @@ body {
 .portfolio-image:hover .caption {
   opacity: 1;
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
 
 .caption-content {
@@ -298,8 +302,18 @@ body {
   height: 100%;
   text-align: center;
   background-color: rgba(1, 93, 199, 0.4);
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(1, 93, 199, 0.75)), to(rgba(162, 0, 255, 0.75)));
-  background-image: linear-gradient(left, rgba(1, 93, 199, 0.75), rgba(162, 0, 255, 0.75));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgba(1, 93, 199, 0.75)),
+    to(rgba(162, 0, 255, 0.75))
+  );
+  background-image: linear-gradient(
+    left,
+    rgba(1, 93, 199, 0.75),
+    rgba(162, 0, 255, 0.75)
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='rgba(1, 93, 199, 0.4)', endColorStr='rgba(162, 0, 255, 0.4)', gradientType='1');
   position: relative;
 }
@@ -401,7 +415,7 @@ body {
   height: auto;
   z-index: 9999;
   border-radius: 5px;
-  font-family: 'Regular', sans-serif;
+  font-family: "Regular", sans-serif;
   opacity: 0;
   visibility: hidden;
   -webkit-box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.2);
@@ -494,7 +508,7 @@ body {
 }
 
 .form-group-checkbox label:before {
-  content: '';
+  content: "";
   -webkit-appearance: none;
   background-color: transparent;
   border: 1px solid #dadada;
@@ -510,7 +524,7 @@ body {
 }
 
 .form-group-checkbox input:checked + label:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 6px;
@@ -549,19 +563,19 @@ body {
 
 footer {
   padding: 12px 0;
-  background-color: #D9D9DB;
+  background-color: #d9d9db;
   bottom: 0;
   width: 100%;
 }
 
 .copyright p {
   font-size: 0.85rem;
-  color: #8E8E8F;
+  color: #8e8e8f;
   margin-bottom: 0px;
 }
 
 .copyright span {
-  color: #8E8E8F;
+  color: #8e8e8f;
   font-size: 16px;
 }
 
@@ -578,16 +592,28 @@ footer {
 
 .inner {
   background: white;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(78%, white), color-stop(78%, #7028B7));
-  background: linear-gradient(0deg, white 78%, #7028B7 78%);
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(78%, white),
+    color-stop(78%, #7028b7)
+  );
+  background: linear-gradient(0deg, white 78%, #7028b7 78%);
   height: 100%;
   width: 100%;
 }
 
 .inner2 {
   background: white;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(84%, white), color-stop(84%, #7028B7));
-  background: linear-gradient(0deg, white 84%, #7028B7 84%);
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(84%, white),
+    color-stop(84%, #7028b7)
+  );
+  background: linear-gradient(0deg, white 84%, #7028b7 84%);
   height: 25%;
   width: 100%;
 }
@@ -709,8 +735,10 @@ footer {
   -webkit-transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
   transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 24px;
-  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11), 0 12px 90px 0 rgba(103, 151, 255, 0.11);
-          box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11), 0 12px 90px 0 rgba(103, 151, 255, 0.11);
+  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
+    0 12px 90px 0 rgba(103, 151, 255, 0.11);
+  box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
+    0 12px 90px 0 rgba(103, 151, 255, 0.11);
   background: white;
   border-radius: 10px;
   padding: 17px;
@@ -891,5 +919,9 @@ footer {
 
 #filterApplyBtn i {
   padding-right: 10px;
+}
+
+.m-r-3{
+  margin-right: 10px;
 }
 </style>

@@ -20,7 +20,19 @@ export default {
       }
     console.log(designs);
     this.$store.dispatch('init_designs',designs)
-    })
+    });    
+
+    axios.get("http://localhost:8060/portfolio/lookupdata")
+    .then(response => {
+      const modals = []
+      const modalData = response.data
+      for(const m in modalData){
+        const modal = modalData[m];
+        modals.push(modal)
+      }
+    console.log(modals);
+    this.$store.dispatch('init_modals',modals)
+    });
   }
 }
 </script>
