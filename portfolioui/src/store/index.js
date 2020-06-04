@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import designs from './modules/designs'
+import modals from "./modules/modals"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,7 +12,8 @@ export default new Vuex.Store({
     actions: {
     },
     modules: {
-        designs
+        designs,
+        modals
     }
   })
   
