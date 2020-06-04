@@ -18,7 +18,6 @@
             />
             <label :for="work.key">{{work.value}}</label>
           </div>
-          <div class="right">{{selectedWorks}}</div>
         </div>
 
         <div class="col-md-6">
@@ -33,7 +32,6 @@
             />
             <label :for="type.key">{{type.value}}</label>
           </div>
-          <div class="right">{{selectedTypes}}</div>
         </div>
 
         <div class="col-md-6">
@@ -48,7 +46,6 @@
             />
             <label :for="industry.key">{{industry.value}}</label>
           </div>
-          <div class="right">{{selectedIndustries}}</div>
         </div>
       </div>
     </div>
@@ -107,15 +104,19 @@ export default {
       });
 
       this.$options.parent.$children.forEach(event => {
-        if (element != event.$el) {
-          for (var i = 0; i < selectedCheckbox.length; i++) {
-            if (event.$el.classList.contains(selectedCheckbox[i])) {
-              event.$el.style.display = "";
-              break;
-            } else {
-              event.$el.style.display = "none";
+        if (selectedCheckbox.length) {
+          if (element != event.$el) {
+            for (var i = 0; i < selectedCheckbox.length; i++) {
+              if (event.$el.classList.contains(selectedCheckbox[i])) {
+                event.$el.style.display = "";
+                break;
+              } else {
+                event.$el.style.display = "none";
+              }
             }
           }
+        } else {
+          event.$el.style.display = "";
         }
       });
     }
