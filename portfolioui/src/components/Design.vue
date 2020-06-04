@@ -2,7 +2,7 @@
 
     <div class="portfolio col-lg-3 col-md-6 " v-bind:class="[design.industry , design.work , design.type ]">
                                     <figure class="portfolio-image">
-                                        <img :src="require('@/assets/' + design.image + '')" alt="CxCalibration" class="img-responsive">
+                                        <img :src="design.imagePath" alt="CxCalibration" class="img-responsive">
                                         <figcaption class="caption">
                                             <div class="caption-content">
                                                 <h3 class="portfolio-item-title text-center sub-title">{{design.name}}</h3>
