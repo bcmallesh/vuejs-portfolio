@@ -26,10 +26,7 @@ export default {
     .then(response => {
       const modals = []
       const modalData = response.data
-      for(const m in modalData){
-        const modal = modalData[m];
-        modals.push(modal)
-      }
+     modals.push(modalData);
     console.log(modals);
     this.$store.dispatch('init_modals',modals)
     });

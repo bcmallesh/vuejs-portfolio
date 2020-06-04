@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-md-6">
           <h3 class="mb-3">Work:</h3>
-          <div class="form-group" v-for="work in modals.workLookupData">
+          <div class="form-group" v-for="work in modals[0].workLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -23,7 +23,7 @@
 
         <div class="col-md-6">
           <h3 class="mb-3">Type:</h3>
-          <div class="form-group" v-for="type in modals.typeLookupData">
+          <div class="form-group" v-for="type in modals[0].typeLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -38,7 +38,7 @@
 
         <div class="col-md-6">
           <h3 class="mb-3">Industry:</h3>
-          <div class="form-group" v-for="industry in modals.industryLookupData">
+          <div class="form-group" v-for="industry in modals[0].industryLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -95,15 +95,15 @@ export default {
       var element = this.$el;
       var selectedCheckbox = [];
       this.selectedWorks.forEach(item => {
-        selectedCheckbox.push(item.name);
+        selectedCheckbox.push(item);
       });
 
       this.selectedTypes.forEach(item => {
-        selectedCheckbox.push(item.title);
+        selectedCheckbox.push(item);
       });
 
       this.selectedIndustries.forEach(item => {
-        selectedCheckbox.push(item.area);
+        selectedCheckbox.push(item);
       });
 
       this.$options.parent.$children.forEach(event => {
