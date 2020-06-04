@@ -8,6 +8,7 @@
         <li>
           <router-link v-if="isAuthenticated" class="nav-link" to="/projects">Projects</router-link>
         </li>
+        
       </ul>
       <ul class="navbar-nav navbar-collapse justify-content-end">
         <li>

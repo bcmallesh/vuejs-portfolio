@@ -17,15 +17,56 @@ const router = new Router({
             name: "Digital",
             component: () => import("./components/Digital"),
         },
+       
+       
         {
             path: "/login",
             name: "Login",
             component: () => import("./components/Login"),
         },
+       
         {
             path: "/projects",
-            name: "Projects",
-            component: () => import("./components/Projects"),
+            name: "ProjectList",
+            component: () => import("./components/ProjectList"),
+            beforeEnter: (to, from, next) => {
+                if (AuthenticationService.isUserLoggedIn()) {
+                    next()
+                } else {
+                    next({ path: '/login'})
+                }
+            }
+        },
+
+       
+        {
+            path: "/createproject",
+            name: "CreateProject",
+            component: () => import("./components/CreateProject"),
+            beforeEnter: (to, from, next) => {
+                if (AuthenticationService.isUserLoggedIn()) {
+                    next()
+                } else {
+                    next({ path: '/login'})
+                }
+            }
+        },
+        {
+            path: "/editproject/:id",
+            name: "EditProject",
+            component: () => import("./components/EditProject"),
+            beforeEnter: (to, from, next) => {
+                if (AuthenticationService.isUserLoggedIn()) {
+                    next()
+                } else {
+                    next({ path: '/login'})
+                }
+            }
+        },
+        {
+            path: "/deleteproject/:id",
+            name: "DeleteProject",
+            component: () => import("./components/DeleteProject"),
             beforeEnter: (to, from, next) => {
                 if (AuthenticationService.isUserLoggedIn()) {
                     next()
@@ -46,6 +87,8 @@ const router = new Router({
             },
 
         },
+
+
     ]
 });
 

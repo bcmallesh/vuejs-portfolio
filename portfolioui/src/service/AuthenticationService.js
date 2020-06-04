@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8200/portfolio'
+const API_URL = 'http://localhost:8060/portfolio'
 
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
-
+export const SECURITY_TOKEN = 'authToken'
 class AuthenticationService {
 
     // executeBasicAuthenticationService(username, password) {
@@ -12,7 +12,7 @@ class AuthenticationService {
     // }
 
     executeJwtAuthenticationService(username, password) {
-       // console.log(username);
+        console.log(username);
         return axios.post(`${API_URL}/login`, {
             username,
             password
@@ -33,12 +33,15 @@ class AuthenticationService {
     // }
 
     registerSuccessfulLoginForJwt(username, token) {
-        sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
+        sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);
+        sessionStorage.setItem(SECURITY_TOKEN, this.createJWTToken(token));
+
         this.setupAxiosInterceptors(this.createJWTToken(token))
     }
 
     logout() {
         sessionStorage.removeItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
+        sessionStorage.removeItem(SECURITY_TOKEN);
     }
 
     isUserLoggedIn() {
