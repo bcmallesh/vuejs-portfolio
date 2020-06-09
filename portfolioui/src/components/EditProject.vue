@@ -18,7 +18,15 @@
                 <label name="project_name">Name</label>
                 <input type="text" class="form-control" v-model="project.name" id="project_name" required>
             </div>
-
+ <div class="form-group">
+                <label name="project_industry">Industry</label>
+                
+            <select  v-model="project.industry" id="industryList" class="form-control" required>
+        <option v-for="(industry, index) in industries" :key="index" v-bind:value="industry.key">
+            {{industry.value}}
+        </option>
+    </select>  
+            </div>
            
 
             <div class="form-group">
@@ -45,7 +53,10 @@ import Notification from './notifications.vue';
             return{
                 project:{},
                 notifications:[],
-                isAuthenticated: AuthenticationService.isUserLoggedIn()
+                isAuthenticated: AuthenticationService.isUserLoggedIn(),
+                
+               industries: this.retrieveIndustries()
+
             }
         },
 
@@ -54,6 +65,16 @@ import Notification from './notifications.vue';
         },
 
         methods: {
+            retrieveIndustries() {
+      ProjectDataService.getLookupData()
+        .then(response => {
+          this.industries = response.data.industryLookupData;
+          console.log("industry===>"+this.industries);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
 
 getProject: function()
             {

@@ -10,6 +10,12 @@
         </li>
         
       </ul>
+      <ul class="navbar-nav">
+        <li>
+          <router-link v-if="isAuthenticated" class="nav-link" to="/projectsinfo">Projects Info</router-link>
+        </li>
+        
+      </ul>
       <ul class="navbar-nav navbar-collapse justify-content-end">
         <li>
           <router-link v-if="!isAuthenticated" class="nav-link" to="/login">Login</router-link>

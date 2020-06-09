@@ -4,10 +4,20 @@
     <h1>Login</h1>
     <div class="container">
       <div v-if="hasLoginFailed" class="alert alert-warning">Invalid Credentials</div>
-      <div v-if="showSuccessMessage" class="alert">Login Sucessful</div>User Name:
-      <input type="text" name="username" v-model="username">
-      Password:
-      <input type="password" name="password" v-model="password">
+
+      <div v-if="showSuccessMessage" class="alert">Login Sucessful</div>
+      
+ <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" v-model="username" name="username" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" v-model="password" name="password" class="form-control" required />
+                </div>
+
+
+
       <button class="btn btn-success" v-on:click="loginClicked">Login</button>
     </div>
   </section>
@@ -40,7 +50,7 @@ export default {
             this.username,
             response.data.token
           );
-          this.$router.push("/projects");
+          this.$router.push("/projectsinfo");
         })
         .catch(() => {
           this.hasLoginFailed = true;
@@ -68,18 +78,39 @@ export default {
 };
 </script>
 <style scoped>
-  * {
-    margin: 0;
-    padding: 0;
-    -moz-box-sizing: border-box;
-         box-sizing: border-box;
-  }
-  body, html { height:100%; width:100% }
-  body {
-    background: #F5F5F5;
-    font-family: sans-serif;
-  }
- 
+ button, input {
+    overflow: visible;
+}
+  input {
+    
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    background-color: -internal-light-dark-color(rgb(255, 255, 255), rgb(59, 59, 59));
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
+ .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
   .logo {
     display: block;
     position: relative;
@@ -101,63 +132,20 @@ export default {
   .log {
     color: blue;
   }
-  input[type='text'],
-    input[type='password'] {
-      width: 100%;
-      margin-bottom: 0.5em;
-      border: 1;
-      border-radius: 7px;
-      height: 2.5em;
-      font-size: 1.2em;
-      color: hsl(0, 0%, 40%);
-      padding-left: 0.5em;
-    }
-  input[type='password'] {
-      margin-bottom: 0.1em;
-    }
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
    
    
-    .ribbon {
-      position: absolute;
-      right: -5px; top: -5px;
-      z-index: 1;
-      overflow: hidden;
-      width: 75px; height: 75px;
-      text-align: right;
-    }
-    .ribbon span {
-      font-size: 10px;
-      font-weight: bold;
-      color: #FFF;
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 20px;
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-      width: 100px;
-      display: block;
-      background: #79A70A;
-      background: linear-gradient(#C9C9C9 0%, #6B6B6B 100%);
-      box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
-      position: absolute;
-      top: 19px; right: -21px;
-    }
-    .ribbon span::before {
-      content: "";
-      position: absolute; left: 0px; top: 100%;
-      z-index: -1;
-      border-left: 3px solid #6B6B6B;
-      border-right: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-      border-top: 3px solid #6B6B6B;
-    }
-    .ribbon span::after {
-      content: "";
-      position: absolute; right: 0px; top: 100%;
-      z-index: -1;
-      border-left: 3px solid transparent;
-      border-right: 3px solid #6B6B6B;
-      border-bottom: 3px solid transparent;
-      border-top: 3px solid #6B6B6B;
-    }
+    
 </style>

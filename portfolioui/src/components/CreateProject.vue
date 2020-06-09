@@ -1,4 +1,7 @@
 <template>
+
+<section>
+<Menu/>
     <div id="create-project">
         <h1>Create Project</h1>
 
@@ -13,9 +16,15 @@
                 <label name="project_name">Name</label>
                 <input type="text" class="form-control" v-model="project.name" id="project_name" required>
             </div>
-<div class="form-group">
+
+              <div class="form-group">
                 <label name="project_industry">Industry</label>
-                <input type="text" class="form-control" v-model="project.industry" id="project_industry" required>
+                
+            <select  v-model="project.industry" id="industryList" class="form-control" required>
+        <option v-for="(industry, index) in industries" :key="index" v-bind:value="industry.key">
+            {{industry.value}}
+        </option>
+    </select>  
             </div>
             
 
@@ -24,6 +33,7 @@
             </div>
         </form>
     </div>
+          </section>
 </template>
 
 <script>
@@ -34,22 +44,33 @@ import Notification from './notifications.vue';
 
     export default{
          name: "create-project",
+         
   components: {
     Menu,
-    'notification' : Notification
+    'notification' : Notification,
+
   },
         data(){
             return{
                 project:{},
                 notifications:[],
-                industry:[],
-                isAuthenticated: AuthenticationService.isUserLoggedIn()
+                isAuthenticated: AuthenticationService.isUserLoggedIn(),
+                industries: this.retrieveIndustries(),
             }
         },
 
         methods: {
 
-
+retrieveIndustries() {
+      ProjectDataService.getLookupData()
+        .then(response => {
+          this.industries = response.data.industryLookupData;
+          console.log("industry===>"+this.industries);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
             addProject: function()
             {
                 var name = this.project.name;
@@ -79,6 +100,7 @@ import Notification from './notifications.vue';
         .catch(e => {
           console.log(e);
         });
+
     },
             
         }

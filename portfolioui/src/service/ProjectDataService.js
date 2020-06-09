@@ -10,7 +10,14 @@ class ProjectDataService {
       }
     });
   }
-
+  getLookupData() {
+    return axios.get(`${API_URL}`+"/lookupdata",{
+      headers: {
+          'Content-Type': 'application/json'
+          
+      }
+    });
+  }
   get(id) {
     return axios.get(`${API_URL}`+`/projects/${id}`,{
       headers: {

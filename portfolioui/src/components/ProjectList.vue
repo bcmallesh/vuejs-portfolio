@@ -37,7 +37,7 @@
             <thead>
             <tr>
                 <td>ID</td>
-                <td>Name</td>
+                <td>Project Name</td>
                 
                 <td>Actions</td>
             </tr>
@@ -47,7 +47,7 @@
                 <tr v-for="(project, index) in projects" :key="index">
                     <td>{{ project.id }}</td>
                     <td>{{ project.name }}</td>
-                   
+                    <td>{{ project.industry }}</td>
 
                     <td>
                         <router-link :to="{name: 'EditProject', params: { id: project.id }}" class="btn btn-primary">Edit</router-link>
