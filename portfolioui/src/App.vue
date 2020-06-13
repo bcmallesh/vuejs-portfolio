@@ -5,23 +5,26 @@
 </template>
 
 <script>
-//import designs from './source'
+import designs from './source'
 import axios from 'axios'
 export default {
   name: 'app',
   created(){
-    axios.get("http://localhost:8060/portfolio/projectsinfo")
-    .then(response => {
-      const designs = []
-      const designData = response.data
-      for(const k in designData){
-        const design = designData[k];
-        designs.push(design)
-      }
-    console.log(designs);
-    this.$store.dispatch('init_designs',designs)
-    });    
+    // axios.get("http://localhost:8060/portfolio/projectsinfo")
+    // .then(response => {
+    //   const designs = []
+    //   const designData = response.data
+    //   for(const k in designData){
+    //     const design = designData[k];
+    //     designs.push(design)
+    //   }
+    // console.log(designs);
+    // this.$store.dispatch('init_designs',designs)
+    // });    
 
+    console.log(designs);
+    this.$store.dispatch('init_designs',designs);
+    
     axios.get("http://localhost:8060/portfolio/lookupdata")
     .then(response => {
       const modals = []

@@ -17,7 +17,12 @@ const router = new Router({
             name: "Digital",
             component: () => import("./components/Digital"),
         },
-       
+        {
+            path: '/description/:id',
+            name: "Description",
+            component: () => import("./components/Description"),
+            props: true,
+        },
        
         {
             path: "/login",

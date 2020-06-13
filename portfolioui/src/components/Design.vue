@@ -1,6 +1,6 @@
 <template>
   <div
-    class="portfolio col-lg-3 col-md-6"
+    class="portfolio col-lg-3 col-md-6" @click="someFunction"
     v-bind:class="[design.industry , design.work , design.type ]"
   >
     <figure class="portfolio-image">
@@ -16,7 +16,12 @@
 </template>
 <script>
 export default {
-  props: ['design']
+  props: ['design'],
+  methods:{
+    someFunction(){
+      this.$router.push({path:`/description/${this.design.id}` })
+    }
+  }
 };
 </script>
 
