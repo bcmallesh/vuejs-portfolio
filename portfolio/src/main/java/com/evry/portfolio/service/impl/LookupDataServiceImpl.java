@@ -1,14 +1,18 @@
 package com.evry.portfolio.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.evry.portfolio.dao.IndustryDao;
+import com.evry.portfolio.dao.StrongTextDao;
 import com.evry.portfolio.dao.TypeDao;
 import com.evry.portfolio.dao.WorkDao;
+import com.evry.portfolio.model.FomratLookUpDataDto;
 import com.evry.portfolio.model.IndustryDto;
 import com.evry.portfolio.model.LookUpDataDto;
 import com.evry.portfolio.model.TypeDto;
@@ -26,6 +30,9 @@ public class LookupDataServiceImpl implements LookupDataService {
 	
 	@Autowired
 	private WorkDao workDao;
+	
+	@Autowired
+	private StrongTextDao strongTextDao;
 	
 	public LookUpDataDto getAllLookUpData() {
 		LookUpDataDto lookUpDataDto = new LookUpDataDto();
@@ -66,5 +73,20 @@ public class LookupDataServiceImpl implements LookupDataService {
 		return lookUpDataDto;
 	}
 
-	
+
+	public Map<String,ArrayList<FomratLookUpDataDto>> getAllFormatLookUpData() {
+		Map<String,ArrayList<FomratLookUpDataDto>> map=new HashMap<>();
+		
+		ArrayList<FomratLookUpDataDto> strongTextList=new ArrayList<>();
+		strongTextDao.findAll().forEach(strongtext->{
+			
+			FomratLookUpDataDto dto=new FomratLookUpDataDto();
+			dto.setId(strongtext.getId());
+			dto.setKey(strongtext.getLookupDataKey());
+			dto.setValue(strongtext.getLookupDataValue());
+			strongTextList.add(dto);
+		});
+		map.put("strongformat", strongTextList);
+		return map;
+	}
 }
