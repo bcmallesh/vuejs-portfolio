@@ -106,7 +106,18 @@ const router = new Router({
                 }
             }
         },
-
+        {
+            path: "/createprojectwithsections",
+            name: "CreateProjectWithSections",
+            component: () => import("./components/CreateProjectWithSections"),
+            beforeEnter: (to, from, next) => {
+                if (AuthenticationService.isUserLoggedIn()) {
+                    next()
+                } else {
+                    next({ path: '/login'})
+                }
+            }
+        },
         {
             path: "/logout",
             name: "Logout",

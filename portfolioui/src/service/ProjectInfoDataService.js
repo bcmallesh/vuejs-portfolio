@@ -17,6 +17,15 @@ class ProjectDataService {
       }
     });
   }
+  getFormatLookupData() {
+    return axios.get(`${API_URL}`+"/formatedlookupdata",{
+      headers: {
+          'Content-Type': 'application/json'
+          
+      }
+    });
+  }
+  
   get(id) {
     return axios.get(`${API_URL}`+`/projectsinfo/${id}`,{
       headers: {
@@ -26,13 +35,13 @@ class ProjectDataService {
     });
   }
 
-  create(file,data) {
+  create(files,data) {
     let formData = new FormData();
 
     /*
         Add the form data we need to submit
     */
-    formData.append('file', file);
+    formData.append('files', files);
     console.log(JSON.stringify(data));
     formData.append('projectInfo', new Blob([JSON.stringify(data)], {
       type: "application/json"

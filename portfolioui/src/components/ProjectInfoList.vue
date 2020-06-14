@@ -9,7 +9,7 @@
         <h1>Project Info List</h1>
 
 
-        <p>        <router-link v-if="isAuthenticated" class="btn btn-primary" to="/CreateProjectInfo">Create Project Info</router-link>
+        <p>        <router-link v-if="isAuthenticated" class="btn btn-primary" to="/CreateProjectWithSections">Create Project Info</router-link>
 </p>
         <div class="form-group">
             <input type="text" name="search" v-model="projectInfoSearch" placeholder="Search project info" class="form-control" v-on:keyup="searchProjects">
