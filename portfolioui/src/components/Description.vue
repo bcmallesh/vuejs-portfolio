@@ -20,10 +20,10 @@
                 <div class="container">
                 <section class="work main-box " id="boxinner">
                     <div class="row innerbox1">
-                        <appSectionSummary></appSectionSummary>
+                        <appSectionSummary :section_summary="description.section_summary" ></appSectionSummary>
                         <app-tags-section></app-tags-section>
                     </div>
-                    <app-section v-for="section in sections" v-bind:key="section.id" :section="section" ></app-section>
+                    <app-section v-for="section in description.sections" v-bind:key="section.id" :section="section" ></app-section>
                 </section>
             </div>
 </div>
@@ -34,18 +34,20 @@
 import Section from './Section.vue'
 import TagsSection from './TagsSection.vue'
 import SectionSummary from './SectionSummary'
-//import sections from '../sectionsSource'
+import description from '../sectionsSource'
 export default {
     data(){
         return{
             id: this.$route.params.id,
-            sections :     [
-        {id:1 , imagePath: 'https://picsum.photos/300/150/?image=41' , heading:'About Project' , description:'<p>Client&nbsp;was&nbsp;desirous&nbsp;to&nbsp;<strong>develop&nbsp;an&nbsp;application</strong>&nbsp;for&nbsp;<i>better&nbsp;understand&nbsp;their&nbsp;performance</i>&nbsp;using&nbsp;key&nbsp;metrics&nbsp;from&nbsp;anywhere.&nbsp;A&nbsp;"<strong>Pulse</strong>".<i>&nbsp;Packed&nbsp;with&nbsp;the&nbsp;most&nbsp;important&nbsp;reporting.</i></p>'},
-        {id:2 , imagePath: 'https://picsum.photos/300/150/?image=41' , heading:'UX solutions' , description:'Client was desirous to develop an application for their field associates / agents to keep track and better understand their performance using key metrics from anywhere. This applicaiton is designed to allow you, associate to keep a "Pulse" on your growing business. Packed with the most important reporting, analytics, and tracking features, you can now run your business from anywhere.'},
-        {id:3 , imagePath: 'https://picsum.photos/300/150/?image=41' , heading:'About Project 2' , description:'Client was desirous to develop an application for their field associates / agents to keep track and better understand their performance using key metrics from anywhere. This applicaiton is designed to allow you, associate to keep a "Pulse" on your growing business. Packed with the most important reporting, analytics, and tracking features, you can now run your business from anywhere.'},
-        {id:4 , imagePath: 'https://picsum.photos/300/150/?image=41' , heading:'About Project 3' , description:'Client was desirous to develop an application for their field associates / agents to keep track and better understand their performance using key metrics from anywhere. This applicaiton is designed to allow you, associate to keep a "Pulse" on your growing business. Packed with the most important reporting, analytics, and tracking features, you can now run your business from anywhere.'}
-    ] 
+            description
+
         }
+    },
+    created(){
+        // this will have a axios call
+         console.log('created hook for description');
+         console.log(description);
+         this.description = description;
     },
     components:{
         appSection:Section,

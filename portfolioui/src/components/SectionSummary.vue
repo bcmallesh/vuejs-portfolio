@@ -1,17 +1,16 @@
 <template>
-    <div>
+    <div class="row">
           <div class="col-md-6">
-                            <h5> Packed with the most important insurance agents
-                                reporting, analytics, and tracking features</h5>
+                            <h5>{{section_summary.summary_heading}}</h5>
                         </div>
                         <div class="col-md-6">
-                            <img class="imgq" src="assets/images/screens/pulse_app/1.png" alt="UI">
+                            <img class="imgq" :src="section_summary.summary_image" alt="UI">
                         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    props:['section_summary']
 }
 </script>
 
