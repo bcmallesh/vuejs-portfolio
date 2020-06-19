@@ -21,7 +21,10 @@
                 <section class="work main-box " id="boxinner">
                     <div class="row innerbox1">
                         <appSectionSummary :section_summary="description.section_summary" ></appSectionSummary>
-                        <app-tags-section></app-tags-section>
+                        <appSectionSummaryImage :section_summary_image="description.section_summary"></appSectionSummaryImage>
+                        <div class="boxsm">
+                          <app-tags-section v-for="tag in description.tags" v-bind:key="tag.message" :section_tags="tag"></app-tags-section>
+                        </div>
                     </div>
                     <app-section v-for="section in description.sections" v-bind:key="section.id" :section="section" ></app-section>
                 </section>
@@ -34,6 +37,7 @@
 import Section from './Section.vue'
 import TagsSection from './TagsSection.vue'
 import SectionSummary from './SectionSummary'
+import SectionSummaryImage from "./sectionSummaryImage"
 import description from '../sectionsSource'
 export default {
     data(){
@@ -52,7 +56,8 @@ export default {
     components:{
         appSection:Section,
         appTagsSection:TagsSection,
-        appSectionSummary:SectionSummary
+        appSectionSummary:SectionSummary,
+        appSectionSummaryImage: SectionSummaryImage
     }
     
 }

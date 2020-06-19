@@ -4,7 +4,10 @@ export default
         summary_heading:'Packed with the most important insurance agents reporting, analytics, and tracking features',
         summary_image:'https://picsum.photos/300/150/?image=41'
     },
-    tags:['UX design','UI design'],
+    tags:[
+        { message: 'UI/UX Design' },
+        { message: 'UI Development' }
+    ],
     sections:
         [
             {sectionId:1 , imagePath: 'https://picsum.photos/300/150/?image=41' , heading:'About Project' , description:'Client was desirous to develop an application for their field associates / agents to keep track and better understand their performance using key metrics from anywhere. This applicaiton is designed to allow you, associate to keep a "Pulse" on your growing business. Packed with the most important reporting, analytics, and tracking features, you can now run your business from anywhere.'},

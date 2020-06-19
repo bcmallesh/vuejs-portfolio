@@ -6,6 +6,7 @@
 
 <script>
 import designs from './source'
+import modalData from './modalSource'
 import axios from 'axios'
 export default {
   name: 'app',
@@ -25,14 +26,17 @@ export default {
     console.log(designs);
     this.$store.dispatch('init_designs',designs);
     
-    axios.get("http://localhost:8060/portfolio/lookupdata")
-    .then(response => {
-      const modals = []
-      const modalData = response.data
-     modals.push(modalData);
-    console.log(modals);
-    this.$store.dispatch('init_modals',modals)
-    });
+    // axios.get("http://localhost:8060/portfolio/lookupdata")
+    // .then(response => {
+    //   const modals = []
+    //   const modalData = response.data
+    //  modals.push(modalData);
+    // console.log(modals);
+    // this.$store.dispatch('init_modals',modals)
+    // });
+
+    console.log(modalData);
+    this.$store.dispatch('init_modals',modalData);
   }
 }
 </script>

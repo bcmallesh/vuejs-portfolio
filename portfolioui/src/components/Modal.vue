@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-md-6">
           <h3 class="mb-3">Work:</h3>
-          <div class="form-group" v-for="work in modals[0].workLookupData">
+          <div class="form-group" v-for="work in modals.workLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -22,7 +22,7 @@
 
         <div class="col-md-6">
           <h3 class="mb-3">Type:</h3>
-          <div class="form-group" v-for="type in modals[0].typeLookupData">
+          <div class="form-group" v-for="type in modals.typeLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -36,7 +36,7 @@
 
         <div class="col-md-6">
           <h3 class="mb-3">Industry:</h3>
-          <div class="form-group" v-for="industry in modals[0].industryLookupData">
+          <div class="form-group" v-for="industry in modals.industryLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -75,7 +75,7 @@
 export default {
   computed: {
     modals() {
-      return this.$store.getters.modals;
+      return this.$store.getters.modals[0] ? this.$store.getters.modals[0] : [] ;
     }
   },
   methods: {
@@ -119,6 +119,8 @@ export default {
           event.$el.style.display = "";
         }
       });
+
+      
     }
   },
   data() {
