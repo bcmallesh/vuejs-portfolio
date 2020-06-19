@@ -43,15 +43,21 @@ export default {
     data(){
         return{
             id: this.$route.params.id,
+            preview:this.$route.query.preview,
             description
 
         }
     },
     created(){
-        // this will have a axios call
+         console.log(this.preview);
          console.log('created hook for description');
-         console.log(description);
-         this.description = description;
+        if(this.preview  == true){
+            this.description = this.$router.query.description;
+        }else{
+        // this will have a axios call 
+            console.log('axios call')
+            this.description = description;
+        }
     },
     components:{
         appSection:Section,

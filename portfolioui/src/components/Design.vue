@@ -15,11 +15,12 @@
   </div>
 </template>
 <script>
+import description from '../sectionsSource'
 export default {
   props: ['design'],
   methods:{
     someFunction(){
-      this.$router.push({path:`/description/${this.design.id}` })
+      this.$router.push({path:'/description' , query:{preview:'false' , id:this.design.id}})
     }
   }
 };
