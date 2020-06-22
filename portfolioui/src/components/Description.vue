@@ -1,8 +1,8 @@
 <template>
-<div class="inner2">
-<header id="header">
-<div class="container">
-    <nav id="navigation" class="navbar navbar-ligh">
+  <div class="inner2">
+    <header id="header" class>
+      <div class="container">
+        <nav class="navbar navbar-light">
           <a class="navbar-brand" href="index.html">
             <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />
             <span>
@@ -12,65 +12,78 @@
           </a>
         </nav>
         <div class="padding2x"></div>
-                <div class="content container">
-                    <h1>Insurance Agent Tracking<br>
-                        Business Application
-                    </h1>
-                </div>
-                <div class="container">
-                <section class="work main-box " id="boxinner">
-                    <div class="row innerbox1">
-                        <appSectionSummary :section_summary="description.section_summary" ></appSectionSummary>
-                        <appSectionSummaryImage :section_summary_image="description.section_summary"></appSectionSummaryImage>
-                        <div class="boxsm">
-                          <app-tags-section v-for="tag in description.tags" v-bind:key="tag.message" :section_tags="tag"></app-tags-section>
-                        </div>
-                    </div>
-                    <app-section v-for="section in description.sections" v-bind:key="section.id" :section="section" ></app-section>
-                </section>
-            </div>
-</div>
-</header>  
-</div>
+        <div class="content container">
+          <h1>
+            Insurance Agent Tracking
+            <br />Business Application
+          </h1>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <section class="work main-box" id="boxinner">
+        <div class="row innerbox1">
+          <appSectionSummary :section_summary="description.section_summary"></appSectionSummary>
+          <appSectionSummaryImage :section_summary_image="description.section_summary"></appSectionSummaryImage>
+          <div class="boxsm">
+            <app-tags-section
+              v-for="tag in description.tags"
+              v-bind:key="tag.message"
+              :section_tags="tag"
+            ></app-tags-section>
+          </div>
+        </div>
+        <app-section
+          v-for="section in description.sections"
+          v-bind:key="section.id"
+          :section="section"
+        ></app-section>
+      </section>
+    </div>
+    <footer class="foot">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>© 2020 EVRY India</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 <script>
-import Section from './Section.vue'
-import TagsSection from './TagsSection.vue'
-import SectionSummary from './SectionSummary'
-import SectionSummaryImage from "./sectionSummaryImage"
-import description from '../sectionsSource'
+import Section from "./Section.vue";
+import TagsSection from "./TagsSection.vue";
+import SectionSummary from "./SectionSummary";
+import SectionSummaryImage from "./sectionSummaryImage";
+import description from "../sectionsSource";
 export default {
-    data(){
-        return{
-            id: this.$route.params.id,
-            preview:this.$route.query.preview,
-            description
-
-        }
-    },
-    created(){
-         console.log(this.preview);
-         console.log('created hook for description');
-        if(this.preview  == true){
-            this.description = this.$router.query.description;
-        }else{
-        // this will have a axios call 
-            console.log('axios call')
-            this.description = description;
-        }
-    },
-    components:{
-        appSection:Section,
-        appTagsSection:TagsSection,
-        appSectionSummary:SectionSummary,
-        appSectionSummaryImage: SectionSummaryImage
+  data() {
+    return {
+      id: this.$route.params.id,
+      preview: this.$route.query.preview,
+      description
+    };
+  },
+  created() {
+    console.log(this.preview);
+    console.log("created hook for description");
+    if (this.preview == true) {
+      this.description = this.$router.query.description;
+    } else {
+      // this will have a axios call
+      console.log("axios call");
+      this.description = description;
     }
-    
-}
+  },
+  components: {
+    appSection: Section,
+    appTagsSection: TagsSection,
+    appSectionSummary: SectionSummary,
+    appSectionSummaryImage: SectionSummaryImage
+  }
+};
 </script>
 
 <style>
-
 :root {
   --main-color: #7028b7;
 }
@@ -832,7 +845,6 @@ footer {
   line-height: 28px;
 }
 
-
 .mobile-frame-section {
   width: 315px;
   margin: 0 auto;
@@ -908,7 +920,7 @@ footer {
   padding-right: 10px;
 }
 
-.m-r-3{
+.m-r-3 {
   margin-right: 10px;
 }
 </style>
