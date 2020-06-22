@@ -5,10 +5,8 @@
         <nav id="navigation" class="navbar navbar-ligh">
           <a class="navbar-brand" href="index.html">
             <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />
-            <span>
-              Digital
-              <b>Experience</b>
-            </span>
+            <span class="vl"></span>
+            <span>Digital<b>Experience</b></span>
           </a>
         </nav>
         <div class="padding1x"></div>
@@ -17,8 +15,8 @@
           <h2>The Complete Design System</h2>
           <div class="btn">
             <!-- <a href="digital.html">Our Process </a> -->
-            <router-link to="/digital" activeClass="active" tag="li">
-              <a>Our Process</a>
+            <router-link to="/digital" activeClass="active">
+              <a>Our Process</a><i class="fa fa-arrow-right" aria-hidden="true"></i>
             </router-link>
           </div>
           <!-- <div class="btn ">
