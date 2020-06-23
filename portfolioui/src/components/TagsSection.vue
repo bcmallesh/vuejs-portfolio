@@ -28,5 +28,6 @@ export default {
 
 .boxsm .black {
   color: black !important;
+  margin-bottom: 0px !important;
 }
 </style>

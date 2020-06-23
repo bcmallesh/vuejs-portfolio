@@ -1,7 +1,7 @@
 <template>
   <div tabindex="-1" role="dialog" class="filter-modal show-panel" id="filterModal">
     <button type="button" class="close" @click="close" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+      <i class="fa fa-times" aria-hidden="true"></i>
     </button>
 
     <div class="filter-modal-body" id="filter-options">
@@ -58,13 +58,13 @@
         style="margin-left: 20px;"
       >
         &nbsp;
-        <span class="glyphicon glyphicon-ok"></span>
+        <i class="fas fa-check m-10"></i>
         Apply
       </button>
 
       <button id="filterClearBtn" type="button" @click="clear" class="btn btn-light text-right">
         &nbsp;
-        <span aria-hidden="true">&times;</span> Clear
+        <i class="fas fa-times m-10"></i> Clear
       </button>
     </div>
   </div>
@@ -132,3 +132,9 @@ export default {
   }
 };
 </script>
+<style>
+.m-10{
+  margin-right: 10px;
+}
+
+</style>

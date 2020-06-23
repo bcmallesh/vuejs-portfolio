@@ -1,6 +1,7 @@
 <template>
   <div
-    class="portfolio col-lg-3 col-md-6" @click="someFunction"
+    class="portfolio col-lg-3 col-md-6"
+    @click="someFunction"
     v-bind:class="[design.industry , design.work , design.type ]"
   >
     <figure class="portfolio-image">
@@ -15,12 +16,15 @@
   </div>
 </template>
 <script>
-import description from '../sectionsSource'
+import description from "../sectionsSource";
 export default {
-  props: ['design'],
-  methods:{
-    someFunction(){
-      this.$router.push({path:'/description' , query:{preview:'false' , id:this.design.id}})
+  props: ["design"],
+  methods: {
+    someFunction() {
+      this.$router.push({
+        path: "/description",
+        query: { preview: "false", id: this.design.id }
+      });
     }
   }
 };
@@ -90,16 +94,6 @@ body {
 #header a span {
   color: white;
   font-size: 1.4em;
-}
-
-#header a span::before {
-  content: " ";
-  background: #d9a4f5;
-  opacity: 0.5;
-  width: 1px;
-  padding-right: 1px;
-  margin-right: 10px;
-  margin-left: 7px;
 }
 
 #header .padding1x {
@@ -927,7 +921,14 @@ footer {
   padding-right: 10px;
 }
 
-.m-r-3{
+.m-r-3 {
   margin-right: 10px;
+}
+
+.vl {
+  border-left: #d9a4f5 solid 1px;
+  padding-right: 1px;
+  margin-right: 12px;
+  margin-left: 12px;
 }
 </style>
