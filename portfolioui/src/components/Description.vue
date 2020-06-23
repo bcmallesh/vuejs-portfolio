@@ -14,8 +14,7 @@
         <div class="padding2x"></div>
         <div class="content container">
           <h1>
-            Insurance Agent Tracking
-            <br />Business Application
+            {{description.project_name}}
           </h1>
         </div>
       </div>

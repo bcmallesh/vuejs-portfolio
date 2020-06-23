@@ -3,13 +3,15 @@
     <header id="header">
       <div class="container">
         <nav id="navigation" class="navbar navbar-ligh">
-          <a class="navbar-brand" href="index.html">
+          <router-link to="/" activeClass="active" tag="a">
+              
+          <!-- <a class="navbar-brand" href="index.html"> -->
             <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />
             <span>
               Digital
               <b>Experience</b>
             </span>
-          </a>
+          </router-link>
         </nav>
         <div class="padding1x"></div>
         <div class="content container">
