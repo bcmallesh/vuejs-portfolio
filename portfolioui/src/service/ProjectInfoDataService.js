@@ -17,14 +17,7 @@ class ProjectDataService {
       }
     });
   }
-  getFormatLookupData() {
-    return axios.get(`${API_URL}`+"/formatedlookupdata",{
-      headers: {
-          'Content-Type': 'application/json'
-          
-      }
-    });
-  }
+  
   
   get(id) {
     return axios.get(`${API_URL}`+`/projectsinfo/${id}`,{
@@ -35,19 +28,27 @@ class ProjectDataService {
     });
   }
 
-  create(files,data) {
+  create(thumnailimage,heroimage,sectionfiles,data) {
     let formData = new FormData();
 
     /*
         Add the form data we need to submit
     */
-    formData.append('files', files);
+    formData.append('thumnailimage', thumnailimage);
+    formData.append('heroimage', heroimage);
+    for (let i = 0; i < sectionfiles.length; i++) {
+      formData.append("sectionfiles", sectionfiles[i]);
+  }
+
+
+    //formData.append('sectionfiles',sectionfiles);
+
     console.log(JSON.stringify(data));
-    formData.append('projectInfo', new Blob([JSON.stringify(data)], {
+    formData.append('projectdata', new Blob([JSON.stringify(data)], {
       type: "application/json"
   }));
 
-    return axios.post(`${API_URL}`+"/createprojectinfo", formData, {
+    return axios.post(`${API_URL}`+"/createproject", formData, {
       headers: {
           //'Content-Type': 'application/json',
           'Content-Type': 'multipart/form-data',

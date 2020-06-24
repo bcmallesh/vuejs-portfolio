@@ -67,6 +67,8 @@
     </div>
  
   
+
+  
  
      <br><br>
       <button @click="addProjectSection">Add Project Section</button>

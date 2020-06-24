@@ -2,87 +2,10 @@
 
 <section>
 <Menu/>
-    <div id="create-project">
-        <h1>Create Project Info</h1>
-
-        <p><router-link v-if="isAuthenticated" class="btn btn-primary" to="/projectsinfo">Back to Projects Info</router-link>
-
-        <notification v-bind:notifications="notifications"></notification>
-
-        <form v-on:submit.prevent="addProjectInfo" enctype="multipart/form-data">
-
-            
-             <div class="form-group">
-                <label name="project_description">File Upload</label>
-           
-          <picture-input
-  ref="pictureInput"
-  @change="onSelect"
-  @remove="onRemoved"
-  :width="200"
-  :removable="true"
-  removeButtonClass="ui red button"
-  :height="200"
-  multiple
-  accept="image/jpeg, image/png, image/gif"
-  buttonClass="ui button primary"
-  :customStrings="{
-  upload: '<h1>Upload it!</h1>',
-  drag: 'Drag and drop your image here'}">
-
-</picture-input>
-
-            </div>
- 
-             <div class="form-group">
-                <label name="project_description">Image Description</label>
-                <input type="text" class="form-control" v-model="projectinfo.description" id="project_description" required>
-            </div>
-
-
-              <div class="form-group">
-                <label name="project_name">Project Name</label>
-                
-            <select  v-model="projectinfo.project" id="projectNameList" class="form-control" required>
-        <option v-for="(project, index) in projects" :key="index" v-bind:value="project.id">
-            {{project.name}}
-        </option>
-    </select>  
-            </div>
-
-              <div class="form-group">
-                <label name="project_industry">Industry</label>
-                
-            <select  v-model="projectinfo.industry" id="industryList" class="form-control" required>
-        <option v-for="(industry, index) in industries" :key="index" v-bind:value="industry.key">
-            {{industry.value}}
-        </option>
-    </select>  
-            </div>
-
-             <div class="form-group">
-                <label name="project_type">Type</label>
-                
-            <select  v-model="projectinfo.type" id="typeList" class="form-control" required>
-        <option v-for="(type, index) in types" :key="index" v-bind:value="type.key">
-            {{type.value}}
-        </option>
-    </select>  
-            </div>
-
- <div class="form-group">
-                <label name="project_work">Work Type</label>
-                
-            <select  v-model="projectinfo.work" id="workList" class="form-control" required>
-        <option v-for="(work, index) in works" :key="index" v-bind:value="work.key">
-            {{work.value}}
-        </option>
-    </select>  
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary">Create</button>
-            </div>
-        </form>
+      <div id="app">
+        <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+        <hr>
+        <div>{{editorData}}</div>
     </div>
           </section>
 </template>
@@ -91,12 +14,13 @@
     import Menu from "./Menu";
 import ProjectInfoDataService from "../service/ProjectInfoDataService";
 import ProjectDataService from "../service/ProjectDataService";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 import AuthenticationService from "../service/AuthenticationService";
 import Notification from './notifications.vue';
 import PictureInput from 'vue-picture-input'
     export default{
-         name: "create-project-info",
+        name: 'app',
          
   components: {
     Menu,
@@ -115,6 +39,11 @@ import PictureInput from 'vue-picture-input'
                 works: this.retrieveLookupData(),
                 file:"",
                 projects: this.retrieveProjects(),
+                editor: ClassicEditor,
+      editorData: '<p>Content of the editor.</p>',
+      editorConfig: {
+        toolbar: ['bold', 'italic', 'bulletedList', 'numberedList']
+      }
             }
         },
 
