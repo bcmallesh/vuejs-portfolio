@@ -7,7 +7,7 @@
             <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />
             <span class="vl"></span>
             <span>
-              Digital
+              Digital 
               <b>Experience</b>
             </span>
           </a>

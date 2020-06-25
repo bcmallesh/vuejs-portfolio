@@ -7,6 +7,7 @@
               
           <!-- <a class="navbar-brand" href="index.html"> -->
             <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />
+            <span class="vl"></span>
             <span>
               Digital
               <b>Experience</b>

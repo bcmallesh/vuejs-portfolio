@@ -12,7 +12,7 @@
             <input
               class="m-r-3"
               type="checkbox"
-              :id="work.id"
+              :id="work.key"
               :value="work.key"
               v-model="selectedWorks"
             />
@@ -26,7 +26,7 @@
             <input
               class="m-r-3"
               type="checkbox"
-              :id="type.id"
+              :id="type.key"
               :value="type.key"
               v-model="selectedTypes"
             />
@@ -40,7 +40,7 @@
             <input
               class="m-r-3"
               type="checkbox"
-              :id="industry.id"
+              :id="industry.key"
               :value="industry.key"
               v-model="selectedIndustries"
             />
@@ -75,7 +75,7 @@
 export default {
   computed: {
     modals() {
-      return this.$store.getters.modals[0] ? this.$store.getters.modals[0] : [] ;
+      return this.$store.getters.modals[0] ? this.$store.getters.modals[0] : [];
     }
   },
   methods: {
@@ -91,6 +91,7 @@ export default {
       this.$emit("close");
       var element = this.$el;
       var selectedCheckbox = [];
+      var filterImages = [];
       this.selectedWorks.forEach(item => {
         selectedCheckbox.push(item);
       });
@@ -103,24 +104,50 @@ export default {
         selectedCheckbox.push(item);
       });
 
-      this.$options.parent.$children.forEach(event => {
-        if (selectedCheckbox.length) {
-          if (element != event.$el) {
-            for (var i = 0; i < selectedCheckbox.length; i++) {
-              if (event.$el.classList.contains(selectedCheckbox[i])) {
+      this.$options.parent.$children.filter(function(el) {
+        if (el.$el.classList.contains("portfolio")) {
+          filterImages.push(el);
+          console.log("element---->" + el);
+        }
+      });
+
+      filterImages.forEach(event => {
+        var valuePresent = false;
+        if (selectedCheckbox.length > 0) {
+          var classList = event.$el.classList.value.split(" ");
+
+          if (
+            (this.selectedIndustries.length &&
+              this.selectedTypes.length &&
+              this.selectedWorks.length) > 0
+          ) {
+            classList.filter(element => {
+              if (selectedCheckbox.includes(element)) {
                 event.$el.style.display = "";
-                break;
               } else {
                 event.$el.style.display = "none";
               }
-            }
+            });
+          } else if (
+            (this.selectedIndustries.length ||
+              this.selectedTypes.length ||
+              this.selectedWorks.length) > 0
+          ) {
+            selectedCheckbox.filter(element => {
+              if (classList.includes(element)) {
+                event.$el.style.display = "";
+                valuePresent = true;
+              } else {
+                if (!valuePresent) {
+                  event.$el.style.display = "none";
+                }
+              }
+            });
           }
         } else {
           event.$el.style.display = "";
         }
       });
-
-      
     }
   },
   data() {
@@ -133,8 +160,7 @@ export default {
 };
 </script>
 <style>
-.m-10{
+.m-10 {
   margin-right: 10px;
 }
-
 </style>
