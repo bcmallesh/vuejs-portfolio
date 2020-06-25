@@ -1,7 +1,7 @@
 <template>
   <div
     class="portfolio col-lg-3 col-md-6"
-    @click="someFunction"
+    @click="openDescreptionPageFunction"
     v-bind:class="[design.industry , design.work , design.type ]"
   >
     <figure class="portfolio-image">
@@ -20,7 +20,7 @@ import description from "../sectionsSource";
 export default {
   props: ["design"],
   methods: {
-    someFunction() {
+    openDescreptionPageFunction() {
       this.$router.push({
         path: "/description",
         query: { preview: "false", id: this.design.id }
