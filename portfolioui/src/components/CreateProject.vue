@@ -4,6 +4,7 @@
 <Menu/>
       <div id="projectcreation">
              <h1>Project Creation</h1>
+             <notification v-bind:notifications="notifications"></notification>
     <form v-on:submit.prevent="addProjectInfo" enctype="multipart/form-data">
 <div class="project">
           <label name="project_Category">Category</label>
@@ -88,12 +89,12 @@
         <button v-on:click=deleteProjectSection(counter)>x</button></label>
 
         <label for="sectiontext">Section layout:</label>
-    <input type="radio" value="imageleftcontentright" 
+    <input type="radio" value="left" 
     v-model="section.sectionLayout">
-    <img src="../assets/logo.png" height="50px" width="50px"/>
+    <img src="../assets/images/left.jpg" height="50px" width="50px"/>
     
-    <input type="radio" value="imagerightcontentleft" v-model="section.sectionLayout">
-    <img src="../assets/thumb32.png" height="50px" width="50px"/>
+    <input type="radio" value="right" v-model="section.sectionLayout">
+    <img src="../assets/images/right.jpg" height="50px" width="50px"/>
 
  <label for="sectiontext">Section Title:</label>
         <input type="text" v-model.lazy="section.sectionTitle" required>
@@ -292,7 +293,7 @@ projectHeroPictureInputOnRemoved() {
 addProjectInfo: function()
             {
               
-                      console.log(this.project);
+                      
 
                 
 
@@ -300,12 +301,12 @@ addProjectInfo: function()
         .then(response => {
          this.notifications.push({
                         type: 'success',
-                        message: 'Project Info created successfully'
+                        message: 'Project  created successfully'
                     });
         }, (response) => {
                     this.notifications.push({
                         type: 'error',
-                        message: 'Project Info not created'
+                        message: 'Project  not created'
                     });
                 })
         .catch(e => {

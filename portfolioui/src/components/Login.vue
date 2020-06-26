@@ -16,7 +16,6 @@
               <div class="card border-info text-center">
                 <div class="card-header colr">Sign In</div>
                 <div class="card-body">
-                  <form class="form-signin">
                     <input
                       type="text"
                       class="form-control mb-25"
@@ -39,7 +38,6 @@
                       v-on:click="loginClicked"
                       type="submit"
                     >Login</button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -84,29 +82,13 @@ export default {
             this.username,
             response.data.token
           );
-          this.$router.push("/projectsinfo");
+          this.$router.push("/createproject");
         })
         .catch(() => {
           this.hasLoginFailed = true;
           this.showSuccessMessage = false;
         });
 
-      // AuthenticationService.executeBasicAuthenticationService(
-      //   this.username,
-      //   this.password
-      // )
-      //   .then(() => {
-      //     AuthenticationService.registerSuccessfulLogin(
-      //       this.username,
-      //       this.password
-      //     );
-      //     this.showSuccessMessage = true;
-      //     this.$router.push("/courses");
-      //   })
-      //   .catch(() => {
-      //     this.hasLoginFailed = true;
-      //     this.showSuccessMessage = false;
-      //   });
     }
   }
 };

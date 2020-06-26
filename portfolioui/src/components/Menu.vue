@@ -10,8 +10,6 @@
           <b>Experience</b>
         </span>
       </router-link>
-      <router-link v-if="isAuthenticated" class="nav-link" to="/projects"><span><b>Projects</b></span></router-link>
-      <router-link v-if="isAuthenticated" class="nav-link" to="/projectsinfo"><span><b>Projects Info</b></span></router-link>
       <router-link v-if="!isAuthenticated" class="nav-link" to="/login"><span><b>Login</b></span></router-link>
       <router-link v-if="isAuthenticated" class="nav-link" to="/logout"><span><b>Logout</b></span></router-link>
     </nav>
