@@ -186,7 +186,8 @@ export default {
   padding-left: 35px;
   -webkit-transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
   transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 24px;
+  margin-top: 50px;
+  margin-bottom: 20px;
   -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
     0 12px 90px 0 rgba(103, 151, 255, 0.11);
   box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
