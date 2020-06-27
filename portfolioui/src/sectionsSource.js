@@ -3,7 +3,8 @@ export default
     project_name:'UX design',
     section_summary:{
         summary_heading:'Packed with the most important insurance agents reporting, analytics, and tracking features',
-        summary_image:'https://picsum.photos/300/150/?image=41'
+        summary_image:'https://picsum.photos/300/150/?image=41',
+        summary_hero_image:'https://picsum.photos/300/150/?image=41'
     },
     tags:[
         { message: 'UI/UX Design' },

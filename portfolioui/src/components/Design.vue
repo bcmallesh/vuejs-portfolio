@@ -2,7 +2,7 @@
   <div
     class="portfolio col-lg-3 col-md-6"
     @click="openDescreptionPageFunction"
-    v-bind:class="[design.industry , design.work , design.type ]"
+    v-bind:class="[design.industrys.join(' ') , design.works.join(' ') , design.types.join(' ') ]"
   >
     <figure class="portfolio-image">
       <img :src="design.imagePath" alt="CxCalibration" class="img-responsive" />
@@ -25,6 +25,9 @@ export default {
         path: "/description",
         query: { preview: "false", id: this.design.id }
       });
+    },
+    convertListTocommaSeperated(){
+      return this.design.works[1]
     }
   }
 };

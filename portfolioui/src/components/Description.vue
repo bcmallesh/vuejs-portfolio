@@ -3,14 +3,15 @@
     <header id="header" class>
       <div class="container">
         <nav class="navbar navbar-light">
-          <a class="navbar-brand" href="index.html">
+          <router-link to="/" activeClass="active" tag="a">
+          <!-- <a class="navbar-brand" href="index.html"> -->
             <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />
             <span class="vl"></span>
             <span>
-              Digital 
+              Digital
               <b>Experience</b>
             </span>
-          </a>
+          </router-link>
         </nav>
         <div class="padding2x"></div>
         <div class="content container">
@@ -55,6 +56,7 @@ import TagsSection from "./TagsSection.vue";
 import SectionSummary from "./SectionSummary";
 import SectionSummaryImage from "./sectionSummaryImage";
 import description from "../sectionsSource";
+//import axios from 'axios'
 export default {
   data() {
     return {
@@ -70,8 +72,12 @@ export default {
       this.description = this.$router.query.description;
     } else {
       // this will have a axios call
-      console.log("axios call");
-      this.description = description;
+    this.description = description
+    // axios.get("http://localhost:8060/portfolio/projectsinfo")
+    // .then(response => {
+    //  console.log("axios call");
+    // this.description = response.data;
+    // }); 
     }
   },
   components: {
