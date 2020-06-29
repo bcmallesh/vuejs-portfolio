@@ -56,28 +56,36 @@ import TagsSection from "./TagsSection.vue";
 import SectionSummary from "./SectionSummary";
 import SectionSummaryImage from "./sectionSummaryImage";
 import description from "../sectionsSource";
-//import axios from 'axios'
+import axios from 'axios'
 export default {
   data() {
     return {
-      id: this.$route.params.id,
+      id: this.$route.query.id,
       preview: this.$route.query.preview,
-      description
+      description,
+      descriptionTo : this.$route.query.description
     };
+
   },
   created() {
     console.log(this.preview);
     console.log("created hook for description");
-    if (this.preview == true) {
-      this.description = this.$router.query.description;
+    if (this.preview == "true") {
+      let routeData = this.$router.resolve(
+{
+path:'/description', 
+query: {preview:"true", id :description.data}
+});
+window.open(routeData.href, '_blank');
+
     } else {
       // this will have a axios call
-    this.description = description
-    // axios.get("http://localhost:8060/portfolio/projectsinfo")
-    // .then(response => {
-    //  console.log("axios call");
-    // this.description = response.data;
-    // }); 
+    //this.description = description
+    axios.get(`http://localhost:8060/portfolio/projects/${this.id}`)
+    .then(response => {
+    // console.log("axios call");
+    this.description = response.data;
+    }); 
     }
   },
   components: {

@@ -95,7 +95,7 @@
                     type="checkbox"
                     v-model="project.scopeofworks"
                     :id="scopeOfWork.key"
-                    :value="scopeOfWork.key"
+                    :value="scopeOfWork.value"
                   />
                   {{scopeOfWork.value}}
                 </div>
@@ -227,7 +227,7 @@
             <hr />
             <div class="row float-right">
               <button class="btn btn-primary m-r-5 colr">CANCEL</button>
-              <button class="btn btn-primary m-r-5 colr">PREVIEW</button>
+              <button class="btn btn-primary m-r-5 colr" @click="previewProjectInfo">PREVIEW</button>
               <button class="btn btn-primary colr">SAVE</button>
             </div>
           </div>
@@ -367,7 +367,33 @@ export default {
         .catch(e => {
           console.log(e);
         });
+    },
+ previewProjectInfo: function() {
+      ProjectInfoDataService.preview(
+        this.projectThumbnailPictureInputFile,
+        this.projectHeroPictureInputFile,
+        this.sectionFiles,
+        this.project
+      )
+        .then(
+          response => {
+            console.log(response.data);
+            this.$router.push({
+        path: "/description",
+        query: { preview: "true", description: response.data }
+      });
+          }
+          
+        )
+        .catch(e => {
+          console.log(e);
+        });
     }
+
+
+
+
+
   }
 };
 </script>
