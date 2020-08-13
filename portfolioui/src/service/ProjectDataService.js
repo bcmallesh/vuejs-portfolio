@@ -26,7 +26,14 @@ class ProjectDataService {
       }
     });
   }
-
+  getProjectForedit(id) {
+    return axios.get(`${API_URL}`+`/projectsedit/${id}`,{
+      headers: {
+          'Content-Type': 'application/json',
+          'authorization':sessionStorage.getItem("authToken")
+      }
+    });
+  }
   create(data) {
     return axios.post(`${API_URL}`+"/createproject", data, {
       headers: {

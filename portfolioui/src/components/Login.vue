@@ -82,7 +82,7 @@ export default {
             this.username,
             response.data.token
           );
-          this.$router.push("/createproject");
+          this.$router.push("/projects");
         })
         .catch(() => {
           this.hasLoginFailed = true;

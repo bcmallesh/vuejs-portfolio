@@ -81,43 +81,9 @@ const router = new Router({
             }
         },
 
-        {
-            path: "/projectsinfo",
-            name: "ProjectInfoList",
-            component: () => import("./components/ProjectInfoList"),
-            beforeEnter: (to, from, next) => {
-                if (AuthenticationService.isUserLoggedIn()) {
-                    next()
-                } else {
-                    next({ path: '/login'})
-                }
-            }
-        },
+        
 
-        {
-            path: "/createprojectinfo",
-            name: "CreateProjectInfo",
-            component: () => import("./components/CreateProjectInfo"),
-            beforeEnter: (to, from, next) => {
-                if (AuthenticationService.isUserLoggedIn()) {
-                    next()
-                } else {
-                    next({ path: '/login'})
-                }
-            }
-        },
-        {
-            path: "/createprojectwithsections",
-            name: "CreateProjectWithSections",
-            component: () => import("./components/CreateProjectWithSections"),
-            beforeEnter: (to, from, next) => {
-                if (AuthenticationService.isUserLoggedIn()) {
-                    next()
-                } else {
-                    next({ path: '/login'})
-                }
-            }
-        },
+      
         {
             path: "/logout",
             name: "Logout",
@@ -126,7 +92,7 @@ const router = new Router({
                 if (AuthenticationService.isUserLoggedIn()) {
                     AuthenticationService.logout();
                 }
-                next();
+                next({ path: '/'})
             },
 
         },
