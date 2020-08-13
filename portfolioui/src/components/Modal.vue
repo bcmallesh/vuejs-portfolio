@@ -6,6 +6,18 @@
 
     <div class="filter-modal-body" id="filter-options">
       <div class="row">
+        <h3
+          v-if="!defaultResult"
+          class="col-md-6 mx-auto mb-4"
+          style="color:#7d28b2"
+        >Showing {{result}} results of {{designsLength}}</h3>
+        <h3
+          v-if="defaultResult"
+          class="col-md-6 mx-auto mb-4"
+          style="color:#7d28b2"
+        >Showing {{designsLength}} results of {{designsLength}}</h3>
+      </div>
+      <div class="row m-4">
         <div class="col-md-6">
           <h3 class="mb-3">Work:</h3>
           <div class="form-group" v-for="work in modals.workLookupData">
@@ -15,6 +27,7 @@
               :id="work.key"
               :value="work.key"
               v-model="selectedWorks"
+              @click="checkBoxClicked($event)"
             />
             <label :for="work.key">{{work.value}}</label>
           </div>
@@ -29,6 +42,7 @@
               :id="type.key"
               :value="type.key"
               v-model="selectedTypes"
+              @click="checkBoxClicked($event)"
             />
             <label :for="type.key">{{type.value}}</label>
           </div>
@@ -43,6 +57,7 @@
               :id="industry.key"
               :value="industry.key"
               v-model="selectedIndustries"
+              @click="checkBoxClicked($event)"
             />
             <label :for="industry.key">{{industry.value}}</label>
           </div>
@@ -76,11 +91,46 @@ export default {
   computed: {
     modals() {
       return this.$store.getters.modals[0] ? this.$store.getters.modals[0] : [];
-    }
+    },
+    designsLength() {
+      return this.$store.getters.designs.length
+        ? this.$store.getters.designs.length
+        : 0;
+    },
   },
   methods: {
     close() {
       this.$emit("close");
+    },
+    checkBoxClicked($event) {
+      var filterImages = [];
+      this.result = 0;
+      this.defaultResult = false;
+
+      if (event.target.checked) {
+        this.selectedCheckboxes.push(event.target.value);
+      } else {
+        this.selectedCheckboxes.pop(event.target.value);
+        if (this.selectedCheckboxes.length == 0) {
+          this.defaultResult = true;
+        }
+      }
+
+      this.$options.parent.$children.filter(function (el) {
+        if (el.$el.classList.contains("portfolio")) {
+          filterImages.push(el);
+        }
+      });
+
+      filterImages.forEach((event) => {
+        var valuePresent = false;
+        if (this.selectedCheckboxes.length > 0) {
+          var classList = event.$el.classList.value.split(" ");
+          if (this.selectedCheckboxes.every((v) => classList.includes(v))) {
+            this.result++;
+          }
+        }
+      });
     },
     clear() {
       this.selectedWorks = [];
@@ -89,74 +139,52 @@ export default {
     },
     SendRequest() {
       this.$emit("close");
-      var element = this.$el;
       var selectedCheckbox = [];
       var filterImages = [];
-      this.selectedWorks.forEach(item => {
+      this.selectedWorks.forEach((item) => {
         selectedCheckbox.push(item);
       });
 
-      this.selectedTypes.forEach(item => {
+      this.selectedTypes.forEach((item) => {
         selectedCheckbox.push(item);
       });
 
-      this.selectedIndustries.forEach(item => {
+      this.selectedIndustries.forEach((item) => {
         selectedCheckbox.push(item);
       });
 
-      this.$options.parent.$children.filter(function(el) {
+      this.$options.parent.$children.filter(function (el) {
         if (el.$el.classList.contains("portfolio")) {
           filterImages.push(el);
-          console.log("element---->" + el);
         }
       });
 
-      filterImages.forEach(event => {
+      filterImages.forEach((event) => {
         var valuePresent = false;
         if (selectedCheckbox.length > 0) {
           var classList = event.$el.classList.value.split(" ");
-
-          if (
-            (this.selectedIndustries.length &&
-              this.selectedTypes.length &&
-              this.selectedWorks.length) > 0
-          ) {
-            classList.filter(element => {
-              if (selectedCheckbox.includes(element)) {
-                event.$el.style.display = "";
-              } else {
-                event.$el.style.display = "none";
-              }
-            });
-          } else if (
-            (this.selectedIndustries.length ||
-              this.selectedTypes.length ||
-              this.selectedWorks.length) > 0
-          ) {
-            selectedCheckbox.filter(element => {
-              if (classList.includes(element)) {
-                event.$el.style.display = "";
-                valuePresent = true;
-              } else {
-                if (!valuePresent) {
-                  event.$el.style.display = "none";
-                }
-              }
-            });
+          if (selectedCheckbox.every((v) => classList.includes(v))) {
+            event.$el.style.display = "";
+            valuePresent = true;
+          } else {
+            if (!valuePresent) event.$el.style.display = "none";
           }
         } else {
           event.$el.style.display = "";
         }
       });
-    }
+    },
   },
   data() {
     return {
       selectedIndustries: [],
       selectedTypes: [],
-      selectedWorks: []
+      selectedWorks: [],
+      result: 0,
+      defaultResult: true,
+      selectedCheckboxes: [],
     };
-  }
+  },
 };
 </script>
 <style>
