@@ -110,7 +110,10 @@ export default {
       if (event.target.checked) {
         this.selectedCheckboxes.push(event.target.value);
       } else {
-        this.selectedCheckboxes.pop(event.target.value);
+        var index = this.selectedCheckboxes.indexOf(event.target.value);
+        if (index > -1) {
+          this.selectedCheckboxes.splice(index, 1);
+        }
         if (this.selectedCheckboxes.length == 0) {
           this.defaultResult = true;
         }
@@ -133,6 +136,7 @@ export default {
       });
     },
     clear() {
+      this.defaultResult = true;
       this.selectedWorks = [];
       this.selectedTypes = [];
       this.selectedIndustries = [];
