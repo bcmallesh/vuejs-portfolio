@@ -3,6 +3,7 @@ package com.evry.portfolio.model;
 import java.util.ArrayList;
 
 public class ProjectSummary {
+	private Long id;
 	private String project_name;
 	private SectionSummary section_summary;
 	private ArrayList<TagDto> tags=new ArrayList<TagDto>();
@@ -30,6 +31,12 @@ public class ProjectSummary {
 	}
 	public void setSections(ArrayList<SectionDto> sections) {
 		this.sections = sections;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 

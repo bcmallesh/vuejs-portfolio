@@ -10,7 +10,7 @@ public class SectionDto {
 	private String sectionContent;
 	private Blob sectionimage;
 	private String sectionimageName;
-	
+	private String pictureInputSection;
 	Long sectionId;
 	String imagePath;
 	String heading;
@@ -74,6 +74,12 @@ public class SectionDto {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getPictureInputSection() {
+		return pictureInputSection;
+	}
+	public void setPictureInputSection(String pictureInputSection) {
+		this.pictureInputSection = pictureInputSection;
 	}
 	
 }

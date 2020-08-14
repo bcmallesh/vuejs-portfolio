@@ -27,6 +27,10 @@ public class ProjectDto {
     private String heroImagePath;
     private String name;
     private String description;
+    
+    private String pictureInput1;
+    private String pictureInput2;
+    
 	public Long getId() {
 		return id;
 	}
@@ -159,8 +163,17 @@ public class ProjectDto {
 	public void setIndustry(String industry) {
 		this.industry = industry;
 	}
+	public String getPictureInput1() {
+		return pictureInput1;
+	}
+	public void setPictureInput1(String pictureInput1) {
+		this.pictureInput1 = pictureInput1;
+	}
+	public String getPictureInput2() {
+		return pictureInput2;
+	}
+	public void setPictureInput2(String pictureInput2) {
+		this.pictureInput2 = pictureInput2;
+	}
     
-
-	
-
 }

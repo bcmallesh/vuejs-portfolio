@@ -8,7 +8,6 @@ import java.util.Date;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
 public class DateUtil {
 	protected final static Log logger = LogFactory.getLog(DateUtil.class);
 
@@ -24,6 +23,7 @@ public class DateUtil {
 		}
 		return date;
 	}
+
 	public static Date getDateFromString(String stringDate) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
@@ -36,6 +36,7 @@ public class DateUtil {
 		}
 		return date;
 	}
+
 	public static String getCurrentDateAsString() {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -59,17 +60,19 @@ public class DateUtil {
 		logger.info("===getDateAsString()====>" + currentDate);
 		return currentDate;
 	}
-	public static Date getDateGivenDaysBefore(int noOfDays){
-		 Date d = new Date();//
-		 Date dateBefore = new Date(d.getTime() - noOfDays * 24 * 3600 * 1000L); 
-		 return dateBefore;
+
+	public static Date getDateGivenDaysBefore(int noOfDays) {
+		Date d = new Date();//
+		Date dateBefore = new Date(d.getTime() - noOfDays * 24 * 3600 * 1000L);
+		return dateBefore;
 	}
-	public static String convertUtilDateToDateWithAmPm(Date date,String formatString){
-		String dateString2="";
-		if(null!=date){
-		DateFormat dateFormat2 = new SimpleDateFormat(formatString);
-    	 dateString2 = dateFormat2.format(date).toString();
+
+	public static String convertUtilDateToDateWithAmPm(Date date, String formatString) {
+		String dateString2 = "";
+		if (null != date) {
+			DateFormat dateFormat2 = new SimpleDateFormat(formatString);
+			dateString2 = dateFormat2.format(date).toString();
 		}
-    	return dateString2;
+		return dateString2;
 	}
 }

@@ -8,19 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SCOPEOFWORK")
+@Table(name = "SCOPEOFWORK")
 public class ScopeOfWork {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
-    
-    @Column(name = "LOOKUPDATA_KEY")
-    private String lookupDataKey;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Long id;
 
-    @Column(name = "LOOKUPDATA_VALUE")
-    private String lookupDataValue;
+	@Column(name = "LOOKUPDATA_KEY")
+	private String lookupDataKey;
+
+	@Column(name = "LOOKUPDATA_VALUE")
+	private String lookupDataValue;
 
 	public Long getId() {
 		return id;
@@ -46,10 +46,4 @@ public class ScopeOfWork {
 		this.lookupDataValue = lookupDataValue;
 	}
 
-	
-
-	
-	
-
-	
 }

@@ -20,7 +20,6 @@ import com.evry.portfolio.entity.User;
 import com.evry.portfolio.model.UserDto;
 import com.evry.portfolio.service.UserService;
 
-
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService, UserService {
 
@@ -30,8 +29,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	private RoleDao roleDao;
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;
-
-	
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userDao.findByUsername(username);
@@ -91,9 +88,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 			newUser.setUsername(user.getUsername());
 			Role role = roleDao.findByName(user.getRole());
 			newUser.setRole(role);
-			System.out.println("bcryptEncoder===>"+bcryptEncoder+" :: "+user +" :: "+user.getPassword());
+			System.out.println("bcryptEncoder===>" + bcryptEncoder + " :: " + user + " :: " + user.getPassword());
 			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-			
+
 		} else {
 			newUser.setUsername(user.getUsername());
 			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
@@ -107,7 +104,5 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 		udto.setRole(newCreatedUser.getRole().getName());
 		return udto;
 	}
-
-	
 
 }

@@ -10,13 +10,9 @@ import com.evry.portfolio.dao.RoleDao;
 import com.evry.portfolio.entity.Role;
 import com.evry.portfolio.service.RoleService;
 
-
-
-
 @Service(value = "roleService")
 public class RoleServiceImpl implements RoleService {
-	
-	
+
 	@Autowired
 	private RoleDao roleDao;
 
@@ -25,5 +21,5 @@ public class RoleServiceImpl implements RoleService {
 		roleDao.findAll().iterator().forEachRemaining(list::add);
 		return list;
 	}
-	
+
 }

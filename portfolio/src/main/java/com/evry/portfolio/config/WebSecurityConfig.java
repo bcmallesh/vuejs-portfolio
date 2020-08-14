@@ -49,12 +49,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/login","/createuser","/projectsinfo","/projects/*","/formatedlookupdata","/lookupdata","/index.html","/favicon.ico","/assets/images/*","/photos/*","/photos/projectimages/*","/*.js","/*.vue","/*.js.map","/*.html","/*.css","/portfolio/").permitAll()
+                .antMatchers("/h2/**","/login","/createuser","/projectsinfo","/projects/*","/formatedlookupdata","/lookupdata","/index.html","/favicon.ico","/assets/images/*","/photos/*","/photos/projectimages/*","/*.js","/*.vue","/*.js.map","/*.html","/*.css","/portfolio/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+    	
+
+http.csrf().disable();
+http.headers().frameOptions().disable();
     }
 
     @Bean

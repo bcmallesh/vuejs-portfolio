@@ -15,10 +15,10 @@ public class LookupDataController {
 
 	@Autowired
 	private LookupDataService lookupDataService;
-	
+
 	@RequestMapping(value = "/lookupdata", method = RequestMethod.GET)
 	public LookUpDataDto getAllLookUpData() {
 		return lookupDataService.getAllLookUpData();
 	}
-	
+
 }
