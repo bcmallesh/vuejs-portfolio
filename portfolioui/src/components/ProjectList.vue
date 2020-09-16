@@ -59,10 +59,8 @@
                 :to="{name: 'EditProject', params: { id: projectinfo.id }}"
                 class="btn btn-primary"
               >Edit</router-link>
-              <router-link
-                :to="{name: 'DeleteProject', params: { id: projectinfo.id }}"
-                class="btn btn-danger"
-              >Delete</router-link>
+                <!-- <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link> -->
+                <button type="button" calss="btn btn-danger" @click="deleteThisProject(projectinfo.id)" >Delete Project</button>
             </td>
           </tr>
         </tbody>
@@ -75,7 +73,7 @@
 import Menu from "./Menu";
 import ProjectInfoDataService from "../service/ProjectInfoDataService";
 import AuthenticationService from "../service/AuthenticationService";
-
+import ProjectDataService from "../service/ProjectDataService";
 export default {
   name: "projectsinfo-list",
   components: {
@@ -93,6 +91,20 @@ export default {
     };
   },
   methods: {
+     deleteThisProject(projectId){
+     if(confirm("Are you sre you want to delete this project")){
+      ProjectDataService.delete(projectId)
+        .then(response => {
+         alert('project deleted successfully')
+        location.reload();
+        }, (response) => {
+                     alert('Unable to delete the project')
+                })
+        .catch(e => {
+          console.log(e);
+        });
+     }
+    },
     retrieveProjectsInfo() {
       ProjectInfoDataService.getAll()
         .then((response) => {
