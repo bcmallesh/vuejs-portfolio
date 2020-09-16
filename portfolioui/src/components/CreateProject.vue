@@ -347,6 +347,8 @@ export default {
               type: "success",
               message: "Project  created successfully",
             });
+            alert('Project created successfully')
+             this.$router.push("/projects");
           },
           (response) => {
             this.notifications.push({

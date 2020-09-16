@@ -19,7 +19,7 @@
           <h2>The Complete Design System</h2>
           <div class="btn">
             <!-- <a href="digital.html">Our Process </a> -->
-            <router-link to="/digital" activeClass="active">
+            <router-link to="/" activeClass="active">
               <a>Our Process<i class="fa fa-arrow-right" aria-hidden="true"></i></a>
             </router-link>
           </div>
