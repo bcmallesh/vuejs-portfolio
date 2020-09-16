@@ -1,5 +1,5 @@
 <template>
-  <div class="box1">
+  <div class="box1 shadow">
     <p class="black">{{section_tags.message}}</p>
   </div>
 </template>
