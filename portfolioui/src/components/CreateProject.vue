@@ -11,225 +11,216 @@
       <notification v-bind:notifications="notifications"></notification>
       <section class="main-box">
         <form v-on:submit.prevent="addProjectInfo" enctype="multipart/form-data">
-          <div>
-            <div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="m-t-25">
-                    <label name="project_Category">Category</label>
-                    <select
-                      class="form-control"
-                      v-model="project.category"
-                      id="categoryList"
-                      required
-                    >
-                      <option
-                        v-for="(category, index) in categorys"
-                        :key="index"
-                        v-bind:value="category.key"
-                      >{{category.value}}</option>
-                    </select>
-                  </div>
-                  <div class="m-t-25">
-                    <label name="project_Category">Project Name</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      v-model="project.projectName"
-                      id="projectName"
-                      required
-                    />
-                  </div>
-                  <div class="m-t-25">
-                    <label for="projectshortsummary">Short Summary:</label>
-                    <textarea
-                      class="form-control"
-                      type="text"
-                      v-model="project.shortSummary"
-                      id="projectshortSummary"
-                      required
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="m-t-25">
-                    <label name="projectThumbnailPictureInput">Thumbnail Image:</label>
-                    <picture-input
-                      ref="pictureInput1"
-                      @change="projectThumbnailPictureInputOnSelect"
-                      @remove="projectThumbnailPictureInputOnRemoved"
-                      :width="185"
-                      :removable="true"
-                      removeButtonClass="ui red button"
-                      :height="127"
-                      accept="image/jpeg, image/png, image/gif"
-                      buttonClass="ui button primary"
-                      :customStrings="{
-                        upload: '<h1>Upload Thumbnail Image!</h1>',
-                        drag: 'Drag and drop Thumbnail Image here'}"
-                    ></picture-input>
-                  </div>
-                  <div>
-                    <label name="projectHeroPictureInput">Hero Image:</label>
-                    <picture-input
-                      ref="pictureInput2"
-                      @change="projectHeroPictureInputOnSelect"
-                      @remove="projectHeroPictureInputOnRemoved"
-                      :width="185"
-                      :removable="true"
-                      removeButtonClass="ui red button"
-                      :height="127"
-                      accept="image/jpeg, image/png, image/gif"
-                      buttonClass="ui button primary"
-                      :customStrings="{
-                        upload: '<h1>Upload Hero Image!</h1>',
-                        drag: 'Drag and drop Hero Image here'}"
-                    ></picture-input>
-                  </div>
-                </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="m-t-25">
+                <label name="project_Category">Category</label>
+                <select class="form-control" v-model="project.category" id="categoryList" required>
+                  <option
+                    v-for="(category, index) in categorys"
+                    :key="index"
+                    v-bind:value="category.key"
+                  >{{category.value}}</option>
+                </select>
               </div>
               <div class="m-t-25">
-                <label for="scopeofwork">Scope of work:</label>
-                <div v-for="scopeOfWork in scopeOfWorks" v-bind:key="scopeOfWork.key">
-                  <input
-                    type="checkbox"
-                    v-model="project.scopeofworks"
-                    :id="scopeOfWork.key"
-                    :value="scopeOfWork.value"
-                  />
-                  {{scopeOfWork.value}}
-                </div>
+                <label name="project_Category">Project Name</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="project.projectName"
+                  id="projectName"
+                  required
+                />
+              </div>
+              <div class="m-t-25">
+                <label for="projectshortsummary">Short Summary:</label>
+                <textarea
+                  class="form-control"
+                  type="text"
+                  v-model="project.shortSummary"
+                  id="projectshortSummary"
+                  required
+                ></textarea>
               </div>
             </div>
-            <hr />
-
-            <div>
+            <div class="col-md-6">
+              <div class="m-t-25">
+                <label name="projectThumbnailPictureInput">Thumbnail Image:</label>
+                <picture-input
+                  ref="pictureInput1"
+                  @change="projectThumbnailPictureInputOnSelect"
+                  @remove="projectThumbnailPictureInputOnRemoved"
+                  :width="185"
+                  :removable="true"
+                  removeButtonClass="ui red button"
+                  :height="127"
+                  accept="image/jpeg, image/png, image/gif"
+                  buttonClass="ui button primary"
+                  :customStrings="{
+                        upload: '<h1>Upload Thumbnail Image!</h1>',
+                        drag: 'Drag and drop Thumbnail Image here'}"
+                ></picture-input>
+              </div>
               <div>
-                <span>
-                  <strong>Sections:</strong>
-                </span>
+                <label name="projectHeroPictureInput">Hero Image:</label>
+                <picture-input
+                  ref="pictureInput2"
+                  @change="projectHeroPictureInputOnSelect"
+                  @remove="projectHeroPictureInputOnRemoved"
+                  :width="185"
+                  :removable="true"
+                  removeButtonClass="ui red button"
+                  :height="127"
+                  accept="image/jpeg, image/png, image/gif"
+                  buttonClass="ui button primary"
+                  :customStrings="{
+                        upload: '<h1>Upload Hero Image!</h1>',
+                        drag: 'Drag and drop Hero Image here'}"
+                ></picture-input>
+              </div>
+            </div>
+          </div>
+          <div class="m-t-25">
+            <label for="scopeofwork">Scope of work:</label>
+            <div v-for="scopeOfWork in scopeOfWorks" v-bind:key="scopeOfWork.key">
+              <input
+                type="checkbox"
+                v-model="project.scopeofworks"
+                :id="scopeOfWork.key"
+                :value="scopeOfWork.value"
+              />
+              {{scopeOfWork.value}}
+            </div>
+          </div>
+          <hr />
+
+          <div>
+            <div>
+              <span>
+                <strong>Sections:</strong>
+              </span>
+              <button
+                type="button"
+                @click="addProjectSection"
+                class="btn btn-link m-6 clr-link"
+              >+Add Project Section</button>
+            </div>
+
+            <div
+              class="card p-10"
+              v-for="(section, counter) in project.sections"
+              v-bind:key="counter"
+            >
+              <div class="seclass p-10">
+                <span class="m-r-10">Section {{counter+1}}: {{section.sectionTitle}}</span>
                 <button
                   type="button"
-                  @click="addProjectSection"
-                  class="btn btn-link m-6 clr-link"
-                >+Add Project Section</button>
+                  class="btn btn-primary btn-sm colr ml-auto"
+                  v-on:click="deleteProjectSection(counter)"
+                  aria-label="Close"
+                >
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
               </div>
 
-              <div
-                class="card p-10"
-                v-for="(section, counter) in project.sections"
-                v-bind:key="counter"
-              >
-                <div class="seclass p-10">
-                  <span class="m-r-10">Section {{counter+1}}: {{section.sectionTitle}}</span>
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-sm colr ml-auto"
-                    v-on:click="deleteProjectSection(counter)"
-                    aria-label="Close"
-                  >
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                  </button>
+              <div class="m-t-25">
+                <label class="m-r-10">Section layout:</label>
+                <div class="d-i-10">
+                  <input type="radio" class="m-r-5" value="left" v-model="section.sectionLayout" />
+                  <img src="../assets/images/left.jpg" height="50px" width="50px" />
                 </div>
-
-                <div class="m-t-25">
-                  <label class="m-r-10">Section layout:</label>
-                  <div class="d-i-10">
-                    <input type="radio" class="m-r-5" value="left" v-model="section.sectionLayout" />
-                    <img src="../assets/images/left.jpg" height="50px" width="50px" />
-                  </div>
-                  <div class="d-i-10">
-                    <input type="radio" class="m-r-5" value="right" v-model="section.sectionLayout" />
-                    <img src="../assets/images/right.jpg" height="50px" width="50px" />
-                  </div>
+                <div class="d-i-10">
+                  <input type="radio" class="m-r-5" value="right" v-model="section.sectionLayout" />
+                  <img src="../assets/images/right.jpg" height="50px" width="50px" />
                 </div>
+              </div>
 
-                <div class="m-t-25">
-                  <label for="title">Section Title</label>
-                  <input
-                    type="text"
-                    id="title"
-                    class="col-md-6 m-r-10 form-control"
-                    v-model.lazy="section.sectionTitle"
-                    required
-                  />
+              <div class="m-t-25">
+                <label for="title">Section Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  class="col-md-6 m-r-10 form-control"
+                  v-model.lazy="section.sectionTitle"
+                  required
+                />
+              </div>
+
+              <div class="m-t-25">
+                <label>Section Content:</label>
+                <div class="w-50">
+                  <ckeditor
+                    :editor="editor"
+                    v-model="section.sectionContent"
+                    tag-name="textarea"
+                    :config="editorConfig"
+                  ></ckeditor>
                 </div>
+              </div>
 
-                <div class="m-t-25">
-                  <label>Section Content:</label>
-                  <div class="w-50">
-                    <ckeditor
-                      :editor="editor"
-                      v-model="section.sectionContent"
-                      tag-name="textarea"
-                      :config="editorConfig"
-                    ></ckeditor>
-                  </div>
-                </div>
-
-                <div class="m-t-25">
-                  <label name="pictureInput3">Section Image:</label>
-                  <picture-input
-                    ref="pictureInputSection"
-                    @change="projectPictureInputOnSelect(counter)"
-                    @remove="projectPictureInputOnRemoved(counter)"
-                    :width="185"
-                    :removable="true"
-                    removeButtonClass="ui red button"
-                    :height="127"
-                    accept="image/jpeg, image/png, image/gif"
-                    buttonClass="ui button primary"
-                    :customStrings="{
+              <div class="m-t-25">
+                <label name="pictureInput3">Section Image:</label>
+                <picture-input
+                  ref="pictureInputSection"
+                  @change="projectPictureInputOnSelect(counter)"
+                  @remove="projectPictureInputOnRemoved(counter)"
+                  :width="185"
+                  :removable="true"
+                  removeButtonClass="ui red button"
+                  :height="127"
+                  accept="image/jpeg, image/png, image/gif"
+                  buttonClass="ui button primary"
+                  :customStrings="{
   upload: '<h1>Upload Section Image!</h1>',
   drag: 'Drag and drop Section Image here'}"
-                  ></picture-input>
+                ></picture-input>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div>
+            <label for="scopeofwork">Attributes</label>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="work">
+                  <b>Work:</b>
+                </label>
+                <div v-for="work in works" v-bind:key="work.key">
+                  <input type="checkbox" v-model="project.works" :id="work.key" :value="work.key" />
+                  {{work.value}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="type">
+                  <b>Type:</b>
+                </label>
+                <div v-for="type in types" v-bind:key="type.key">
+                  <input type="checkbox" v-model="project.types" :id="type.key" :value="type.key" />
+                  {{type.value}}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="type">
+                  <b>Industry:</b>
+                </label>
+                <div v-for="industry in industries" v-bind:key="industry.key">
+                  <input
+                    type="checkbox"
+                    v-model="project.industrys"
+                    :id="industry.key"
+                    :value="industry.key"
+                  />
+                  {{industry.value}}
                 </div>
               </div>
             </div>
-            <hr />
-            <div>
-              <label for="scopeofwork">Attributes</label>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="work">
-                    <b>Work:</b>
-                  </label>
-                  <div v-for="work in works" v-bind:key="work.key">
-                    <input type="checkbox" v-model="project.works" :id="work.key" :value="work.key" />
-                    {{work.value}}
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <label for="type">
-                    <b>Type:</b>
-                  </label>
-                  <div v-for="type in types" v-bind:key="type.key">
-                    <input type="checkbox" v-model="project.types" :id="type.key" :value="type.key" />
-                    {{type.value}}
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <label for="type">
-                    <b>Industry:</b>
-                  </label>
-                  <div v-for="industry in industries" v-bind:key="industry.key">
-                    <input
-                      type="checkbox"
-                      v-model="project.industrys"
-                      :id="industry.key"
-                      :value="industry.key"
-                    />
-                    {{industry.value}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <div class="row float-right">
-              <button class="btn btn-primary m-r-5 colr">CANCEL</button>
-              <button class="btn btn-primary m-r-5 colr" @click="previewProjectInfo">PREVIEW</button>
-              <button class="btn btn-primary colr">SAVE</button>
-            </div>
+          </div>
+          <hr />
+          <div class="row float-right">
+            <button class="btn btn-primary m-r-5 colr">CANCEL</button>
+            <button class="btn btn-primary m-r-5 colr" @click="previewProjectInfo">PREVIEW</button>
+            <button class="btn btn-primary colr">SAVE</button>
           </div>
         </form>
       </section>
@@ -254,7 +245,7 @@ export default {
     Menu,
     notification: Notification,
 
-    PictureInput
+    PictureInput,
   },
   data() {
     return {
@@ -265,7 +256,7 @@ export default {
       editor: ClassicEditor,
 
       editorConfig: {
-        toolbar: ["bold", "italic", "bulletedList", "numberedList"]
+        toolbar: ["bold", "italic", "bulletedList", "numberedList"],
       },
 
       //sectionfiles:[],
@@ -274,7 +265,7 @@ export default {
         sections: [{}],
         works: [],
         types: [],
-        industrys: []
+        industrys: [],
       },
       notifications: [],
       isAuthenticated: AuthenticationService.isUserLoggedIn(),
@@ -283,7 +274,7 @@ export default {
       categorys: this.retrieveLookupData(),
       works: this.retrieveLookupData(),
       industries: this.retrieveLookupData(),
-      scopeOfWorks: this.retrieveLookupData()
+      scopeOfWorks: this.retrieveLookupData(),
     };
   },
 
@@ -319,14 +310,14 @@ export default {
 
     retrieveLookupData() {
       ProjectInfoDataService.getLookupData()
-        .then(response => {
+        .then((response) => {
           this.industries = response.data.industryLookupData;
           this.categorys = response.data.categoryLookupData;
           this.works = response.data.workLookupData;
           this.types = response.data.typeLookupData;
           this.scopeOfWorks = response.data.scopeOfWorkLookupData;
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -335,7 +326,7 @@ export default {
       this.project.sections.push({
         sectionLayout: "",
         sectionTitle: "",
-        sectionContent: ""
+        sectionContent: "",
         //sectionimage:''
       });
     },
@@ -343,7 +334,7 @@ export default {
       this.project.sections.splice(counter, 1);
     },
 
-    addProjectInfo: function() {
+    addProjectInfo: function () {
       ProjectInfoDataService.create(
         this.projectThumbnailPictureInputFile,
         this.projectHeroPictureInputFile,
@@ -351,50 +342,42 @@ export default {
         this.project
       )
         .then(
-          response => {
+          (response) => {
             this.notifications.push({
               type: "success",
-              message: "Project  created successfully"
+              message: "Project  created successfully",
             });
           },
-          response => {
+          (response) => {
             this.notifications.push({
               type: "error",
-              message: "Project  not created"
+              message: "Project  not created",
             });
           }
         )
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
- previewProjectInfo: function() {
+    previewProjectInfo: function () {
       ProjectInfoDataService.preview(
         this.projectThumbnailPictureInputFile,
         this.projectHeroPictureInputFile,
         this.sectionFiles,
         this.project
       )
-        .then(
-          response => {
-            console.log(response.data);
-            this.$router.push({
-        path: "/description",
-        query: { preview: "true", description: response.data }
-      });
-          }
-          
-        )
-        .catch(e => {
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push({
+            path: "/description",
+            query: { preview: "true", description: response.data },
+          });
+        })
+        .catch((e) => {
           console.log(e);
         });
-    }
-
-
-
-
-
-  }
+    },
+  },
 };
 </script>
 
@@ -411,7 +394,7 @@ main {
 }
 
 #projectcreation {
-  margin: 20px auto;
+  margin: auto;
   max-width: 1000px;
 }
 
@@ -488,21 +471,21 @@ div#picture-input {
   display: flex;
 }
 
-.col-white{
-  color: white!important;
+.col-white {
+  color: white !important;
 }
 
 .colr {
-  background-color: rgb(113, 42, 184)!important;
-  border-color:  rgb(113, 42, 184)!important ;
+  background-color: rgb(113, 42, 184) !important;
+  border-color: rgb(113, 42, 184) !important ;
   color: white;
 }
 
-.clr-link{
-    color: rgb(113, 42, 184)!important;
+.clr-link {
+  color: rgb(113, 42, 184) !important;
 }
 
 .colr:hover {
-  background-color: #8654b8!important;
+  background-color: #8654b8 !important;
 }
 </style>

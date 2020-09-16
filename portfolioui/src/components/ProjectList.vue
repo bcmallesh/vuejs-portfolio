@@ -6,9 +6,9 @@
         <div class="padding1x"></div>
       </div>
     </header>
-    <div id="projectcreation">
-      <h1 >Projects List</h1>
-      
+    <div id="projectList">
+      <h1>Projects List</h1>
+      <section class="main-box">
       <div class="row form-group">
         
         <div class="col-md-8">
@@ -21,7 +21,7 @@
           v-on:keyup="searchProjects"
         />
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 pull-right">
         <router-link
           v-if="isAuthenticated"
           class="btn btn-primary"
@@ -69,6 +69,7 @@
           </tr>
         </tbody>
       </table>
+      </section>
     </div>
   </div>
 </template>
@@ -189,8 +190,8 @@ main {
   height: 100%;
 }
 
-#projectcreation {
-  margin: 20px auto;
+#projectList {
+  margin: auto;
   max-width: 1000px;
 }
 
