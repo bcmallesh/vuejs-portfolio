@@ -1,49 +1,74 @@
 <template>
-<section>
-<Menu/>
-   <div id="all-projects">
-        <h1>Projects List</h1>
+  <div class="inner2">
+    <header id="header">
+      <div class="container">
+        <Menu />
+        <div class="padding1x"></div>
+      </div>
+    </header>
+    <div id="projectcreation">
+      <h1 class="col-white">Projects List</h1>
+      <p>
+        <router-link
+          v-if="isAuthenticated"
+          class="btn btn-primary"
+          to="/CreateProject"
+        >Create Project</router-link>
+      </p>
+      <div class="form-group">
+        <input
+          type="text"
+          name="search"
+          v-model="projectInfoSearch"
+          placeholder="Search project"
+          class="form-control"
+          v-on:keyup="searchProjects"
+        />
+      </div>
 
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Project Name</td>
+            <td>Description</td>
+            <td>Image</td>
+            <td>Actions</td>
+          </tr>
+        </thead>
 
-        <p>        <router-link v-if="isAuthenticated" class="btn btn-primary" to="/CreateProject">Create Project                                                                                                                                                                                                           </router-link>
-</p>
-        <div class="form-group">
-            <input type="text" name="search" v-model="projectInfoSearch" placeholder="Search project" class="form-control" v-on:keyup="searchProjects">
-        </div>
-   
+        <tbody>
+          <tr v-for="(projectinfo, index) in projectsinfo" :key="index">
+            <td>{{ projectinfo.id }}</td>
+            <td>{{ projectinfo.name }}</td>
 
-     <table >
-            <thead>
-            <tr>
-                <td>Id</td>
-                <td>Project Name</td>
-                 <td>Description</td>
-                 <td>Image</td>
-                <td>Actions</td>
-            </tr>
-            </thead>
+            <td>{{ projectinfo.description }}</td>
 
-            <tbody>
-                <tr v-for="(projectinfo, index) in projectsinfo" :key="index">
-                    <td>{{ projectinfo.id }}</td>
-                    <td>{{ projectinfo.name }}</td>
-                   
-                    <td>{{ projectinfo.description }}</td>
+            <td>
+              <img
+                :src="projectinfo.imagePath"
+                alt="CxCalibration"
+                class="img-responsive"
+                width="24px"
+                height="24px"
+              />
+            </td>
 
-                    
-                    <td><img :src="projectinfo.imagePath" alt="CxCalibration" class="img-responsive" width="24px" height="24px"/></td>
-
-                    <td>
-                        <router-link :to="{name: 'EditProject', params: { id: projectinfo.id }}" class="btn btn-primary">Edit</router-link>
-                        <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-   
-
+            <td>
+              <router-link
+                :to="{name: 'EditProject', params: { id: projectinfo.id }}"
+                class="btn btn-primary"
+              >Edit</router-link>
+              <router-link
+                :to="{name: 'DeleteProject', params: { id: projectinfo.id }}"
+                class="btn btn-danger"
+              >Delete</router-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  </section>
 </template>
 
 <script>
@@ -54,7 +79,7 @@ import AuthenticationService from "../service/AuthenticationService";
 export default {
   name: "projectsinfo-list",
   components: {
-    Menu
+    Menu,
   },
   data() {
     return {
@@ -63,18 +88,18 @@ export default {
       currentIndex: -1,
       name: "",
       originalProjectsInfo: [],
-      projectInfoSearch: '',
-      isAuthenticated: AuthenticationService.isUserLoggedIn()
+      projectInfoSearch: "",
+      isAuthenticated: AuthenticationService.isUserLoggedIn(),
     };
   },
   methods: {
     retrieveProjectsInfo() {
       ProjectInfoDataService.getAll()
-        .then(response => {
+        .then((response) => {
           this.projectsinfo = response.data;
           console.log(response.data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -92,57 +117,155 @@ export default {
 
     removeAllProjects() {
       ProjectInfoDataService.deleteAll()
-        .then(response => {
+        .then((response) => {
           console.log(response.data);
           this.refreshList();
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
-    
+
     searchName() {
       ProjectInfoDataService.findByName(this.name)
-        .then(response => {
+        .then((response) => {
           this.projectsinfo = response.data;
           console.log(response.data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
-    
-    searchProjects()
-            {
-                if(this.projectInfoSearch == '')
-                {
-                    this.projectsinfo = this.originalProjectsInfo;
-                    return;
-                }
 
-                var searchedProjects = [];
-                for(var i = 0; i <  this.projectsinfo.length; i++)
-                {
-                    var productName =( null != this.projectsinfo[i]['name'] ? this.projectsinfo[i]['name'].toLowerCase():'');
-                    if(productName.indexOf(this.projectInfoSearch.toLowerCase()) >= 0)
-                    {
-                        searchedProjects.push(this.projectsinfo[i]);
-                    }
-                }
+    searchProjects() {
+      if (this.projectInfoSearch == "") {
+        this.projectsinfo = this.originalProjectsInfo;
+        return;
+      }
 
-                this.projectsinfo = searchedProjects;
-            }
+      var searchedProjects = [];
+      for (var i = 0; i < this.projectsinfo.length; i++) {
+        var productName =
+          null != this.projectsinfo[i]["name"]
+            ? this.projectsinfo[i]["name"].toLowerCase()
+            : "";
+        if (productName.indexOf(this.projectInfoSearch.toLowerCase()) >= 0) {
+          searchedProjects.push(this.projectsinfo[i]);
+        }
+      }
+
+      this.projectsinfo = searchedProjects;
+    },
   },
   mounted() {
     this.retrieveProjectsInfo();
-  }
+  },
 };
 </script>
 
-<style>
-.list {
-  text-align: left;
-  max-width: 750px;
-  margin: auto;
+<style scoped>
+body,
+html {
+  height: 100%;
+}
+main {
+  margin-top: 30px;
+  height: 100%;
+}
+
+#projectcreation {
+  margin: 20px auto;
+  max-width: 1000px;
+}
+
+.inner2 {
+  background: white;
+  background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(84%, white),
+    color-stop(84%, #7028b7)
+  );
+  background: linear-gradient(0deg, white 84%, #7028b7 84%);
+  height: 25%;
+  width: 100%;
+}
+
+.main-box {
+  background: white;
+  border-radius: 20px;
+  padding-right: 35px;
+  padding-bottom: 42px;
+  padding-left: 35px;
+  -webkit-transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 24px;
+  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
+    0 12px 90px 0 rgba(103, 151, 255, 0.11);
+  box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
+    0 12px 90px 0 rgba(103, 151, 255, 0.11);
+}
+
+.m-t-25 {
+  margin-top: 25px;
+}
+
+.p-10 {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.m-6 {
+  margin-top: -6px;
+}
+
+.seclass {
+  border: 1px solid lightgray;
+  display: inline-flex;
+  border-radius: 10px;
+}
+
+.m-r-10 {
+  margin-right: 10px;
+}
+
+.m-r-5 {
+  margin-right: 5px;
+}
+
+.d-i-10 {
+  display: inline;
+  margin-right: 10px;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.d-flex {
+  display: flex;
+}
+
+div#picture-input {
+  display: flex;
+}
+
+.col-white{
+  color: white!important;
+}
+
+.colr {
+  background-color: rgb(113, 42, 184)!important;
+  border-color:  rgb(113, 42, 184)!important ;
+  color: white;
+}
+
+.clr-link{
+    color: rgb(113, 42, 184)!important;
+}
+
+.colr:hover {
+  background-color: #8654b8!important;
 }
 </style>
