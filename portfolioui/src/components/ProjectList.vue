@@ -1,76 +1,86 @@
 <template>
-  <div class="inner2">
+  <div class="background_dig">
     <header id="header">
       <div class="container">
         <Menu />
         <div class="padding1x"></div>
       </div>
     </header>
-    <div id="projectList">
-      <h1>Projects List</h1>
+    <div class="container mb-100">
       <section class="main-box">
-      <div class="row form-group">
-        
-        <div class="col-md-8">
-        <input
-          type="text"
-          name="search"
-          v-model="projectInfoSearch"
-          placeholder="Search project"
-          class="form-control"
-          v-on:keyup="searchProjects"
-        />
+        <h3 class="p-2">Projects List</h3>
+        <div class="row form-group">
+          <div class="col-md-8">
+            <input
+              type="text"
+              name="search"
+              v-model="projectInfoSearch"
+              placeholder="Search project"
+              class="form-control"
+              v-on:keyup="searchProjects"
+            />
+          </div>
+          <div class="col-md-4 pull-right">
+            <router-link
+              v-if="isAuthenticated"
+              class="btn btn-primary"
+              to="/CreateProject"
+            >Create Project</router-link>
+          </div>
         </div>
-        <div class="col-md-4 pull-right">
-        <router-link
-          v-if="isAuthenticated"
-          class="btn btn-primary"
-          to="/CreateProject"
-        >Create Project</router-link>
-        </div>
-      </div>
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <td>Id</td>
-            <td>Project Name</td>
-            <td>Description</td>
-            <td>Image</td>
-            <td>Actions</td>
-          </tr>
-        </thead>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>Id</td>
+              <td>Project Name</td>
+              <td>Description</td>
+              <td>Image</td>
+              <td>Actions</td>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr v-for="(projectinfo, index) in projectsinfo" :key="index">
-            <td>{{ projectinfo.id }}</td>
-            <td>{{ projectinfo.name }}</td>
+          <tbody>
+            <tr v-for="(projectinfo, index) in projectsinfo" :key="index">
+              <td>{{ projectinfo.id }}</td>
+              <td>{{ projectinfo.name }}</td>
 
-            <td>{{ projectinfo.description }}</td>
+              <td>{{ projectinfo.description }}</td>
 
-            <td>
-              <img
-                :src="projectinfo.imagePath"
-                alt="CxCalibration"
-                class="img-responsive"
-                width="40px"
-                height="40px"
-              />
-            </td>
+              <td>
+                <img
+                  :src="projectinfo.imagePath"
+                  alt="CxCalibration"
+                  class="img-responsive"
+                  width="40px"
+                  height="40px"
+                />
+              </td>
 
-            <td>
-              <router-link
-                :to="{name: 'EditProject', params: { id: projectinfo.id }}"
-                class="btn btn-primary mr-2"
-              >Edit</router-link>
+              <td>
+                <router-link
+                  :to="{name: 'EditProject', params: { id: projectinfo.id }}"
+                  class="btn btn-primary mr-2"
+                >Edit</router-link>
                 <!-- <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link> -->
-                <button type="button" class="btn btn-danger" @click="deleteThisProject(projectinfo.id)" >Delete Project</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  @click="deleteThisProject(projectinfo.id)"
+                >Delete Project</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </div>
+     <footer class="foot p-t-r-20">
+      <div class="container">
+        <div class="copyright text-center">
+          <p>© 2020 EVRY India</p>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -96,19 +106,22 @@ export default {
     };
   },
   methods: {
-     deleteThisProject(projectId){
-     if(confirm("Are you sre you want to delete this project")){
-      ProjectDataService.delete(projectId)
-        .then(response => {
-         alert('project deleted successfully')
-        location.reload();
-        }, (response) => {
-                     alert('Unable to delete the project')
-                })
-        .catch(e => {
-          console.log(e);
-        });
-     }
+    deleteThisProject(projectId) {
+      if (confirm("Are you sre you want to delete this project")) {
+        ProjectDataService.delete(projectId)
+          .then(
+            (response) => {
+              alert("project deleted successfully");
+              location.reload();
+            },
+            (response) => {
+              alert("Unable to delete the project");
+            }
+          )
+          .catch((e) => {
+            console.log(e);
+          });
+      }
     },
     retrieveProjectsInfo() {
       ProjectInfoDataService.getAll()
@@ -190,11 +203,9 @@ main {
   height: 100%;
 }
 
-#projectList {
-  margin: auto;
-  max-width: 1000px;
+.padding1x {
+  padding-top: 81px;
 }
-
 .inner2 {
   background: white;
   background: -webkit-gradient(
@@ -209,6 +220,18 @@ main {
   width: 100%;
 }
 
+.mb-100{
+  margin-bottom: 100px;
+}
+
+.background_dig {
+  background: url(../assets/images/img.jpg);
+  width: 100%;
+  position: relative;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .main-box {
   background: white;
   border-radius: 20px;
@@ -268,21 +291,25 @@ div#picture-input {
   display: flex;
 }
 
-.col-white{
-  color: white!important;
+.col-white {
+  color: white !important;
 }
 
 .colr {
-  background-color: rgb(113, 42, 184)!important;
-  border-color:  rgb(113, 42, 184)!important ;
+  background-color: rgb(113, 42, 184) !important;
+  border-color: rgb(113, 42, 184) !important ;
   color: white;
 }
 
-.clr-link{
-    color: rgb(113, 42, 184)!important;
+.clr-link {
+  color: rgb(113, 42, 184) !important;
 }
 
 .colr:hover {
-  background-color: #8654b8!important;
+  background-color: #8654b8 !important;
+}
+
+.p-t-r-20 {
+  padding: 20px 0px 20px 0px;
 }
 </style>
