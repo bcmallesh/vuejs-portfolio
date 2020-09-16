@@ -7,15 +7,11 @@
       </div>
     </header>
     <div id="projectcreation">
-      <h1 class="col-white">Projects List</h1>
-      <p>
-        <router-link
-          v-if="isAuthenticated"
-          class="btn btn-primary"
-          to="/CreateProject"
-        >Create Project</router-link>
-      </p>
-      <div class="form-group">
+      <h1 >Projects List</h1>
+      
+      <div class="row form-group">
+        
+        <div class="col-md-8">
         <input
           type="text"
           name="search"
@@ -24,6 +20,14 @@
           class="form-control"
           v-on:keyup="searchProjects"
         />
+        </div>
+        <div class="col-md-4">
+        <router-link
+          v-if="isAuthenticated"
+          class="btn btn-primary"
+          to="/CreateProject"
+        >Create Project</router-link>
+        </div>
       </div>
 
       <table class="table table-striped">
@@ -49,18 +53,18 @@
                 :src="projectinfo.imagePath"
                 alt="CxCalibration"
                 class="img-responsive"
-                width="24px"
-                height="24px"
+                width="40px"
+                height="40px"
               />
             </td>
 
             <td>
               <router-link
                 :to="{name: 'EditProject', params: { id: projectinfo.id }}"
-                class="btn btn-primary"
+                class="btn btn-primary mr-2"
               >Edit</router-link>
                 <!-- <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link> -->
-                <button type="button" calss="btn btn-danger" @click="deleteThisProject(projectinfo.id)" >Delete Project</button>
+                <button type="button" class="btn btn-danger" @click="deleteThisProject(projectinfo.id)" >Delete Project</button>
             </td>
           </tr>
         </tbody>

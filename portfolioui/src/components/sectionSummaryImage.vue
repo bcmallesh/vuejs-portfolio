@@ -13,8 +13,8 @@ export default {
 .imgq {
   position: absolute;
   z-index: 2;
-  width: 90%;
-  left: 7%;
-  top: -118%;
+  width: 70%;
+  left: 25%;
+  top: -125%;
 }
 </style>
