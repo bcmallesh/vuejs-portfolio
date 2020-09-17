@@ -1,7 +1,5 @@
 <template>
-  <div className="container">
     <router-view />
-  </div>
 </template>
 
 <script>
@@ -24,7 +22,7 @@ export default {
     });    
 
   //  console.log(designs);
-   // this.$store.dispatch('init_designs',designs);
+  //  this.$store.dispatch('init_designs',designs);
     
     axios.get("http://localhost:8060/portfolio/lookupdata")
     .then(response => {
@@ -35,12 +33,13 @@ export default {
     this.$store.dispatch('init_modals',modals)
     });
 
-    //console.log(modalData);
-    //this.$store.dispatch('init_modals',modalData);
+    // console.log(modalData);
+    // this.$store.dispatch('init_modals',modalData);
   }
 }
 </script>
 
 <style>
+@import 'assets/custom.css';
 @import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css)
 </style>
