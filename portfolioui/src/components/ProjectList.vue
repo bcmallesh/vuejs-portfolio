@@ -32,11 +32,11 @@
         <table class="table table-hover table-responsive">
           <thead class="thead-light">
             <tr>
-              <td>Id</td>
-              <td>Project Name</td>
-              <td>Description</td>
-              <td>Image</td>
-              <td>Actions</td>
+              <th>Id</th>
+              <th>Project Name</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th colspan="2">Actions</th>
             </tr>
           </thead>
 
@@ -61,8 +61,9 @@
                 <router-link
                   :to="{name: 'EditProject', params: { id: projectinfo.id }}"
                   class="btn btn-primary mr-2"
-                ><i class="far fa-edit"></i></router-link>
+                ><i class="far fa-edit"></i></router-link></td>
                 <!-- <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link> -->
+                <td>
                 <button
                   type="button"
                   class="btn btn-danger"
@@ -127,6 +128,7 @@ export default {
       ProjectInfoDataService.getAll()
         .then((response) => {
           this.projectsinfo = response.data;
+          this.originalProjectsInfo = response.data;
           console.log(response.data);
         })
         .catch((e) => {
@@ -168,7 +170,8 @@ export default {
     },
 
     searchProjects() {
-      if (this.projectInfoSearch == "") {
+      
+      if (this.projectInfoSearch == '') {
         this.projectsinfo = this.originalProjectsInfo;
         return;
       }
