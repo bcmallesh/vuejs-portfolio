@@ -3,13 +3,12 @@
     <header id="header">
       <div class="container">
         <Menu></Menu>
-        <div class="padding1x"></div>
       </div>
     </header>
     <div id="projectcreation">
       <h1 class="col-white">New Project</h1>
       <notification v-bind:notifications="notifications"></notification>
-      <section class="main-box">
+      <section class="main-box mt-4">
         <form v-on:submit.prevent="addProjectInfo" enctype="multipart/form-data">
           <div class="row">
             <div class="col-md-6">
@@ -103,7 +102,7 @@
               <button
                 type="button"
                 @click="addProjectSection"
-                class="btn btn-link m-6 clr-link"
+                class="btn btn-link m-6"
               >+Add Project Section</button>
             </div>
 
@@ -383,111 +382,3 @@ export default {
 };
 </script>
 
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-body,
-html {
-  height: 100%;
-}
-main {
-  margin-top: 30px;
-  height: 100%;
-}
-
-#projectcreation {
-  margin: auto;
-  max-width: 1000px;
-}
-
-.inner2 {
-  background: white;
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(84%, white),
-    color-stop(84%, #7028b7)
-  );
-  background: linear-gradient(0deg, white 84%, #7028b7 84%);
-  height: 25%;
-  width: 100%;
-}
-
-.main-box {
-  background: white;
-  border-radius: 20px;
-  padding-right: 35px;
-  padding-bottom: 42px;
-  padding-left: 35px;
-  -webkit-transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
-  transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 24px;
-  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
-    0 12px 90px 0 rgba(103, 151, 255, 0.11);
-  box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
-    0 12px 90px 0 rgba(103, 151, 255, 0.11);
-}
-
-.m-t-25 {
-  margin-top: 25px;
-}
-
-.p-10 {
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.m-6 {
-  margin-top: -6px;
-}
-
-.seclass {
-  border: 1px solid lightgray;
-  display: inline-flex;
-  border-radius: 10px;
-}
-
-.m-r-10 {
-  margin-right: 10px;
-}
-
-.m-r-5 {
-  margin-right: 5px;
-}
-
-.d-i-10 {
-  display: inline;
-  margin-right: 10px;
-}
-
-.w-50 {
-  width: 50%;
-}
-
-.d-flex {
-  display: flex;
-}
-
-div#picture-input {
-  display: flex;
-}
-
-.col-white {
-  color: white !important;
-}
-
-.colr {
-  background-color: rgb(113, 42, 184) !important;
-  border-color: rgb(113, 42, 184) !important ;
-  color: white;
-}
-
-.clr-link {
-  color: rgb(113, 42, 184) !important;
-}
-
-.colr:hover {
-  background-color: #8654b8 !important;
-}
-</style>

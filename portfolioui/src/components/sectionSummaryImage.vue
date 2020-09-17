@@ -8,13 +8,3 @@ export default {
   props: ["section_summary_image"]
 };
 </script>
-
-<style scoped>
-.imgq {
-  position: absolute;
-  z-index: 2;
-  width: 70%;
-  left: 25%;
-  top: -125%;
-}
-</style>

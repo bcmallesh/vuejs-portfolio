@@ -3,28 +3,20 @@
     <header id="header">
       <div class="container">
         <Menu></Menu>
-        <div class="padding1x"></div>
       </div>
     </header>
     <div id="projectcreation">
       <h1 class="col-white">Update Project</h1>
       <notification v-bind:notifications="notifications"></notification>
-      <section class="main-box">
+      <section class="main-box mt-4">
         <form v-on:submit.prevent="addProjectInfo" enctype="multipart/form-data">
           <div>
             <div>
               <div class="row">
                 <div class="col-md-6">
-
-                   <div class="m-t-25">
+                  <div class="m-t-25">
                     <label name="project_id">Project Id</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      v-model="project.id"
-                      id="projectId"
-                     
-                    />
+                    <input class="form-control" type="text" v-model="project.id" id="projectId" />
                   </div>
                   <div class="m-t-25">
                     <label name="project_Category">Category</label>
@@ -78,12 +70,17 @@
                       :customStrings="{
                         upload: '<h1>Upload Thumbnail Image!</h1>',
                         drag: 'Drag and drop Thumbnail Image here'}"
-                    :src="project.imagePath"
+                      :src="project.imagePath"
                     ></picture-input>
-                                     <img :src="project.imagePath" alt="Thumbnail Image" class="img-responsive" width="185px" height="127px"/>
-   
+                    <img
+                      :src="project.imagePath"
+                      alt="Thumbnail Image"
+                      class="img-responsive"
+                      width="185px"
+                      height="127px"
+                    />
                   </div>
-                  
+
                   <div>
                     <label name="projectHeroPictureInput">Hero Image:</label>
                     <picture-input
@@ -100,7 +97,13 @@
                         upload: '<h1>Upload Hero Image!</h1>',
                         drag: 'Drag and drop Hero Image here'}"
                     ></picture-input>
-                    <img :src="project.heroImage" alt="Hero Image" class="img-responsive" width="185px" height="127px"/>
+                    <img
+                      :src="project.heroImage"
+                      alt="Hero Image"
+                      class="img-responsive"
+                      width="185px"
+                      height="127px"
+                    />
                   </div>
                 </div>
               </div>
@@ -127,7 +130,7 @@
                 <button
                   type="button"
                   @click="addProjectSection"
-                  class="btn btn-link m-6 clr-link"
+                  class="btn btn-link m-6"
                 >+Add Project Section</button>
               </div>
 
@@ -200,8 +203,13 @@
   upload: '<h1>Upload Section Image!</h1>',
   drag: 'Drag and drop Section Image here'}"
                   ></picture-input>
-                                                       <img :src="section.imagePath" alt="Section Image" class="img-responsive" width="185px" height="127px"/>
-
+                  <img
+                    :src="section.imagePath"
+                    alt="Section Image"
+                    class="img-responsive"
+                    width="185px"
+                    height="127px"
+                  />
                 </div>
               </div>
             </div>
@@ -273,7 +281,7 @@ export default {
     Menu,
     notification: Notification,
 
-    PictureInput
+    PictureInput,
   },
   data() {
     return {
@@ -284,7 +292,7 @@ export default {
       editor: ClassicEditor,
 
       editorConfig: {
-        toolbar: ["bold", "italic", "bulletedList", "numberedList"]
+        toolbar: ["bold", "italic", "bulletedList", "numberedList"],
       },
 
       //sectionfiles:[],
@@ -293,7 +301,7 @@ export default {
         sections: [{}],
         works: [],
         types: [],
-        industrys: []
+        industrys: [],
       },
       notifications: [],
       isAuthenticated: AuthenticationService.isUserLoggedIn(),
@@ -302,21 +310,20 @@ export default {
       categorys: this.retrieveLookupData(),
       works: this.retrieveLookupData(),
       industries: this.retrieveLookupData(),
-      scopeOfWorks: this.retrieveLookupData()
+      scopeOfWorks: this.retrieveLookupData(),
     };
   },
-created: function(){
-            this.getProject();
-        },
+  created: function () {
+    this.getProject();
+  },
   methods: {
-    getProject: function()
-            {
+    getProject: function () {
       ProjectDataService.getProjectForedit(this.$route.params.id)
-        .then(response => {
+        .then((response) => {
           this.project = response.data;
           console.log(response.data);
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -351,14 +358,14 @@ created: function(){
 
     retrieveLookupData() {
       ProjectInfoDataService.getLookupData()
-        .then(response => {
+        .then((response) => {
           this.industries = response.data.industryLookupData;
           this.categorys = response.data.categoryLookupData;
           this.works = response.data.workLookupData;
           this.types = response.data.typeLookupData;
           this.scopeOfWorks = response.data.scopeOfWorkLookupData;
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
@@ -367,7 +374,7 @@ created: function(){
       this.project.sections.push({
         sectionLayout: "",
         sectionTitle: "",
-        sectionContent: ""
+        sectionContent: "",
         //sectionimage:''
       });
     },
@@ -375,7 +382,7 @@ created: function(){
       this.project.sections.splice(counter, 1);
     },
 
-    addProjectInfo: function() {
+    addProjectInfo: function () {
       ProjectInfoDataService.update(
         this.$route.params.id,
         this.projectThumbnailPictureInputFile,
@@ -384,158 +391,41 @@ created: function(){
         this.project
       )
         .then(
-          response => {
+          (response) => {
             this.notifications.push({
               type: "success",
-              message: "Project  updated successfully"
+              message: "Project  updated successfully",
             });
           },
-          response => {
+          (response) => {
             this.notifications.push({
               type: "error",
-              message: "Project  not updated"
+              message: "Project  not updated",
             });
           }
         )
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
- previewProjectInfo: function() {
+    previewProjectInfo: function () {
       ProjectInfoDataService.preview(
         this.projectThumbnailPictureInputFile,
         this.projectHeroPictureInputFile,
         this.sectionFiles,
         this.project
       )
-        .then(
-          response => {
-            console.log(response.data);
-            this.$router.push({
-        path: "/description",
-        query: { preview: "true", description: response.data }
-      });
-          }
-          
-        )
-        .catch(e => {
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push({
+            path: "/description",
+            query: { preview: "true", description: response.data },
+          });
+        })
+        .catch((e) => {
           console.log(e);
         });
-    }
-
-
-
-
-
-  }
+    },
+  },
 };
 </script>
-
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-body,
-html {
-  height: 100%;
-}
-main {
-  margin-top: 30px;
-  height: 100%;
-}
-
-#projectcreation {
-  margin: 20px auto;
-  max-width: 1000px;
-}
-
-.inner2 {
-  background: white;
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(84%, white),
-    color-stop(84%, #7028b7)
-  );
-  background: linear-gradient(0deg, white 84%, #7028b7 84%);
-  height: 25%;
-  width: 100%;
-}
-
-.main-box {
-  background: white;
-  border-radius: 20px;
-  padding-right: 35px;
-  padding-bottom: 42px;
-  padding-left: 35px;
-  -webkit-transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
-  transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 24px;
-  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
-    0 12px 90px 0 rgba(103, 151, 255, 0.11);
-  box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
-    0 12px 90px 0 rgba(103, 151, 255, 0.11);
-}
-
-.m-t-25 {
-  margin-top: 25px;
-}
-
-.p-10 {
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.m-6 {
-  margin-top: -6px;
-}
-
-.seclass {
-  border: 1px solid lightgray;
-  display: inline-flex;
-  border-radius: 10px;
-}
-
-.m-r-10 {
-  margin-right: 10px;
-}
-
-.m-r-5 {
-  margin-right: 5px;
-}
-
-.d-i-10 {
-  display: inline;
-  margin-right: 10px;
-}
-
-.w-50 {
-  width: 50%;
-}
-
-.d-flex {
-  display: flex;
-}
-
-div#picture-input {
-  display: flex;
-}
-
-.col-white{
-  color: white!important;
-}
-
-.colr {
-  background-color: rgb(113, 42, 184)!important;
-  border-color:  rgb(113, 42, 184)!important ;
-  color: white;
-}
-
-.clr-link{
-    color: rgb(113, 42, 184)!important;
-}
-
-.colr:hover {
-  background-color: #8654b8!important;
-}
-</style>

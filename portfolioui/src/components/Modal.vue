@@ -7,8 +7,10 @@
     <div class="filter-modal-body" id="filter-options">
       <div class="row">
         <div class="col-md-4">
-          <h3 class="mb-3"><strong>Work:</strong></h3>
-          <div  v-for="work in modals.workLookupData">
+          <h3 class="mb-3">
+            <strong>Work:</strong>
+          </h3>
+          <div v-for="work in modals.workLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -22,7 +24,9 @@
         </div>
 
         <div class="col-md-4">
-          <h3 class="mb-3"><strong>Type:</strong></h3>
+          <h3 class="mb-3">
+            <strong>Type:</strong>
+          </h3>
           <div v-for="type in modals.typeLookupData">
             <input
               class="m-r-3"
@@ -37,7 +41,9 @@
         </div>
 
         <div class="col-md-4">
-          <h3 class="mb-3"><strong>Industry:</strong></h3>
+          <h3 class="mb-3">
+            <strong>Industry:</strong>
+          </h3>
           <div v-for="industry in modals.industryLookupData">
             <input
               class="m-r-3"
@@ -53,16 +59,14 @@
       </div>
 
       <div class="row">
-        <h6
+        <div
           v-if="!defaultResult"
-          class="col-md-6 mx-auto text-center mb-4"
-          style="color:#7d28b2"
-        >Result Count {{result}} of {{designsLength}}</h6>
-        <h6
+          class="col-md-6 mx-auto text-center shadow p-3 mt-2 mb-2 bg-white rounded"
+        >Result Count - {{result}} of {{designsLength}}</div>
+        <div
           v-if="defaultResult"
-          class="col-md-6 mx-auto text-center mb-4"
-          style="color:#7d28b2"
-        >Result Count {{designsLength}} of {{designsLength}}</h6>
+          class="col-md-6 mx-auto text-center shadow p-3 mt-2 mb-2 bg-white rounded"
+        >Result Count - {{designsLength}} of {{designsLength}}</div>
       </div>
     </div>
     <div class="filter-modal-footer">
@@ -71,16 +75,18 @@
         type="button"
         @click="SendRequest"
         class="btn btn-primary text-right"
-        style="margin-left: 20px;"
       >
-        &nbsp;
         <i class="fas fa-check m-10"></i>
         Apply
       </button>
 
-      <button id="filterClearBtn" type="button" @click="clear" class="btn btn-light text-right">
-        &nbsp;
-        <i class="fas fa-times m-10"></i> Clear
+      <button
+        id="filterClearBtn"
+        type="button"
+        @click="clear"
+        class="btn btn-light text-right mr-2"
+      >
+        <i class="fas fa-times m-10 x"></i> Clear
       </button>
     </div>
   </div>
@@ -192,8 +198,3 @@ export default {
   },
 };
 </script>
-<style>
-.m-10 {
-  margin-right: 10px;
-}
-</style>

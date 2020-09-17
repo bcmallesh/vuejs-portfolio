@@ -6,7 +6,7 @@
         <div class="padding1x"></div>
       </div>
     </header>
-    <div class="container mb-100">
+    <div class="container">
       <section class="main-box">
         <h3 class="p-2">Projects List</h3>
         <div class="row form-group">
@@ -29,8 +29,8 @@
           </div>
         </div>
 
-        <table class="table table-striped">
-          <thead>
+        <table class="table table-hover table-responsive">
+          <thead class="thead-light">
             <tr>
               <td>Id</td>
               <td>Project Name</td>
@@ -74,7 +74,7 @@
         </table>
       </section>
     </div>
-     <footer class="foot p-t-r-20">
+     <footer class="foot">
       <div class="container">
         <div class="copyright text-center">
           <p>© 2020 EVRY India</p>
@@ -192,124 +192,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-body,
-html {
-  height: 100%;
-}
-main {
-  margin-top: 30px;
-  height: 100%;
-}
-
-.padding1x {
-  padding-top: 81px;
-}
-.inner2 {
-  background: white;
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(84%, white),
-    color-stop(84%, #7028b7)
-  );
-  background: linear-gradient(0deg, white 84%, #7028b7 84%);
-  height: 25%;
-  width: 100%;
-}
-
-.mb-100{
-  margin-bottom: 100px;
-}
-
-.background_dig {
-  background: url(../assets/images/img.jpg);
-  width: 100%;
-  position: relative;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.main-box {
-  background: white;
-  border-radius: 20px;
-  padding-right: 35px;
-  padding-bottom: 42px;
-  padding-left: 35px;
-  -webkit-transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
-  transition: 300ms all cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 24px;
-  -webkit-box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
-    0 12px 90px 0 rgba(103, 151, 255, 0.11);
-  box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.11),
-    0 12px 90px 0 rgba(103, 151, 255, 0.11);
-}
-
-.m-t-25 {
-  margin-top: 25px;
-}
-
-.p-10 {
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.m-6 {
-  margin-top: -6px;
-}
-
-.seclass {
-  border: 1px solid lightgray;
-  display: inline-flex;
-  border-radius: 10px;
-}
-
-.m-r-10 {
-  margin-right: 10px;
-}
-
-.m-r-5 {
-  margin-right: 5px;
-}
-
-.d-i-10 {
-  display: inline;
-  margin-right: 10px;
-}
-
-.w-50 {
-  width: 50%;
-}
-
-.d-flex {
-  display: flex;
-}
-
-div#picture-input {
-  display: flex;
-}
-
-.col-white {
-  color: white !important;
-}
-
-.colr {
-  background-color: rgb(113, 42, 184) !important;
-  border-color: rgb(113, 42, 184) !important ;
-  color: white;
-}
-
-.clr-link {
-  color: rgb(113, 42, 184) !important;
-}
-
-.colr:hover {
-  background-color: #8654b8 !important;
-}
-
-.p-t-r-20 {
-  padding: 20px 0px 20px 0px;
-}
-</style>
