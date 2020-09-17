@@ -20,10 +20,10 @@
               v-on:keyup="searchProjects"
             />
           </div>
-          <div class="col-md-4 pull-right">
+          <div class="col-md-4">
             <router-link
               v-if="isAuthenticated"
-              class="btn btn-primary"
+              class="btn btn-primary text-right"
               to="/CreateProject"
             >Create Project</router-link>
           </div>
@@ -61,13 +61,13 @@
                 <router-link
                   :to="{name: 'EditProject', params: { id: projectinfo.id }}"
                   class="btn btn-primary mr-2"
-                >Edit</router-link>
+                ><i class="far fa-edit"></i></router-link>
                 <!-- <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link> -->
                 <button
                   type="button"
                   class="btn btn-danger"
                   @click="deleteThisProject(projectinfo.id)"
-                >Delete Project</button>
+                ><i class="fa fa-trash"></i></button>
               </td>
             </tr>
           </tbody>
