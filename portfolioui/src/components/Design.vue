@@ -410,9 +410,9 @@ body {
 .filter-modal {
   padding: 15px;
   background-color: white;
-  width: 520px;
-  top: -203px;
-  left: -471px;
+  width: 550px;
+  top: -145px;
+  left: -495px;
   position: absolute;
   visibility: visible;
   height: auto;

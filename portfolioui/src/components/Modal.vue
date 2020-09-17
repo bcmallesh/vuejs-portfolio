@@ -6,21 +6,9 @@
 
     <div class="filter-modal-body" id="filter-options">
       <div class="row">
-        <h3
-          v-if="!defaultResult"
-          class="col-md-6 mx-auto mb-4"
-          style="color:#7d28b2"
-        >Showing {{result}} results of {{designsLength}}</h3>
-        <h3
-          v-if="defaultResult"
-          class="col-md-6 mx-auto mb-4"
-          style="color:#7d28b2"
-        >Showing {{designsLength}} results of {{designsLength}}</h3>
-      </div>
-      <div class="row m-4">
-        <div class="col-md-6">
-          <h3 class="mb-3">Work:</h3>
-          <div class="form-group" v-for="work in modals.workLookupData">
+        <div class="col-md-4">
+          <h3 class="mb-3"><strong>Work:</strong></h3>
+          <div  v-for="work in modals.workLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -33,9 +21,9 @@
           </div>
         </div>
 
-        <div class="col-md-6">
-          <h3 class="mb-3">Type:</h3>
-          <div class="form-group" v-for="type in modals.typeLookupData">
+        <div class="col-md-4">
+          <h3 class="mb-3"><strong>Type:</strong></h3>
+          <div v-for="type in modals.typeLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -48,9 +36,9 @@
           </div>
         </div>
 
-        <div class="col-md-6">
-          <h3 class="mb-3">Industry:</h3>
-          <div class="form-group" v-for="industry in modals.industryLookupData">
+        <div class="col-md-4">
+          <h3 class="mb-3"><strong>Industry:</strong></h3>
+          <div v-for="industry in modals.industryLookupData">
             <input
               class="m-r-3"
               type="checkbox"
@@ -62,6 +50,19 @@
             <label :for="industry.key">{{industry.value}}</label>
           </div>
         </div>
+      </div>
+
+      <div class="row">
+        <h6
+          v-if="!defaultResult"
+          class="col-md-6 mx-auto text-center mb-4"
+          style="color:#7d28b2"
+        >Result Count {{result}} of {{designsLength}}</h6>
+        <h6
+          v-if="defaultResult"
+          class="col-md-6 mx-auto text-center mb-4"
+          style="color:#7d28b2"
+        >Result Count {{designsLength}} of {{designsLength}}</h6>
       </div>
     </div>
     <div class="filter-modal-footer">
