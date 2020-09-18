@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-md-4">
           <h3 class="mb-3">
-            <strong>Work:</strong>
+            <strong>Work</strong>
           </h3>
           <div v-for="work in modals.workLookupData">
             <div class="form-group-checkbox">
@@ -27,7 +27,7 @@
 
         <div class="col-md-4">
           <h3 class="mb-3">
-            <strong>Type:</strong>
+            <strong>Type</strong>
           </h3>
           <div v-for="type in modals.typeLookupData">
             <div class="form-group-checkbox">
@@ -46,7 +46,7 @@
 
         <div class="col-md-4">
           <h3 class="mb-3">
-            <strong>Industry:</strong>
+            <strong>Industry</strong>
           </h3>
           <div v-for="industry in modals.industryLookupData">
             <div class="form-group-checkbox">

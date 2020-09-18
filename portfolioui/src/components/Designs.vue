@@ -37,6 +37,7 @@
                 <div class="filtericon"></div>
               </button>
               <modal v-show="isModalVisible" @close="closeModal"></modal>
+              <div v-if="isModalVisible" class="modal-overlay show-modal-overlay"></div>
             </div>
           </div>
         </div>
