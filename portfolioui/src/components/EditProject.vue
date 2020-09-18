@@ -129,7 +129,7 @@
                       :id="scopeOfWork.key"
                       :value="scopeOfWork.value"
                     />
-                    <label>{{scopeOfWork.value}}</label>
+                    <label :for="scopeOfWork.key">{{scopeOfWork.value}}</label>
                   </div>
                 </div>
               </div>
@@ -249,7 +249,7 @@
                         :id="work.key"
                         :value="work.key"
                       />
-                      <label>{{work.value}}</label>
+                      <label :for="work.key">{{work.value}}</label>
                     </div>
                   </div>
                 </div>
@@ -265,7 +265,7 @@
                         :id="type.key"
                         :value="type.key"
                       />
-                      <label>{{type.value}}</label>
+                      <label :for="type.key" >{{type.value}}</label>
                     </div>
                   </div>
                 </div>
@@ -281,7 +281,7 @@
                         :id="industry.key"
                         :value="industry.key"
                       />
-                      <label>{{industry.value}}</label>
+                      <label :for="industry.key" >{{industry.value}}</label>
                     </div>
                   </div>
                 </div>
