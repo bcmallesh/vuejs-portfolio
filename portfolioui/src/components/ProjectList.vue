@@ -60,13 +60,13 @@
               <td>
                 <router-link
                   :to="{name: 'EditProject', params: { id: projectinfo.id }}"
-                  class="btn btn-primary mr-2"
+                  class="btn btn-link mr-2"
                 ><i class="far fa-edit"></i></router-link></td>
                 <!-- <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link> -->
                 <td>
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  class="btn btn-link red-danger" 
                   @click="deleteThisProject(projectinfo.id)"
                 ><i class="fa fa-trash"></i></button>
               </td>
