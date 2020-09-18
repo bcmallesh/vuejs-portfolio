@@ -218,7 +218,7 @@
           <hr />
           <div class="row float-right">
             <button class="btn btn-primary m-r-5 colr">CANCEL</button>
-            <button class="btn btn-primary m-r-5 colr" @click="previewProjectInfo">PREVIEW</button>
+            <!-- <button class="btn btn-primary m-r-5 colr" @click="previewProjectInfo">PREVIEW</button> -->
             <button class="btn btn-primary colr">SAVE</button>
           </div>
         </form>
