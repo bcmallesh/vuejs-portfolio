@@ -375,11 +375,24 @@ body {
   margin-top: 5px;
 }
 
-.btn-primary {
+.btn-primary, .ui.button.primary {
   color: #fff!important;
   background-color: #7d28b2!important;
   border-radius: 46px!important;
   border-color: #7d28b2!important;
+}
+
+.ui.red.button {
+  color: #fff;
+  background-color: #dc3545;
+  border-radius: 46px;
+  border-color: #dc3545;
+}
+
+.ui.red.button:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
 }
 
 .btn-link {
@@ -397,7 +410,7 @@ body {
   border-color: #f8f9fa!important;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .ui.button.primary:hover {
   color: #fff!important;
   background-color: #5c168e!important;
   border-color: #7d28b2!important;
@@ -753,7 +766,7 @@ footer {
   height: auto;
 }
 
-.img-h{
+.img-h {
   height: 125px;
 }
 
