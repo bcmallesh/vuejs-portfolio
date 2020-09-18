@@ -55,55 +55,67 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="m-t-25">
+                  <div class="m-t-25 mb-3">
                     <label name="projectThumbnailPictureInput">Thumbnail Image:</label>
-                    <picture-input
-                      ref="pictureInput1"
-                      @change="projectThumbnailPictureInputOnSelect"
-                      @remove="projectThumbnailPictureInputOnRemoved"
-                      :width="185"
-                      :removable="true"
-                      removeButtonClass="ui red button"
-                      :height="127"
-                      accept="image/jpeg, image/png, image/gif"
-                      buttonClass="ui button primary"
-                      :customStrings="{
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img
+                          :src="project.imagePath"
+                          alt="Thumbnail Image"
+                          class="img-responsive"
+                          width="185px"
+                          height="127px"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <picture-input
+                          ref="pictureInput1"
+                          @change="projectThumbnailPictureInputOnSelect"
+                          @remove="projectThumbnailPictureInputOnRemoved"
+                          :width="185"
+                          :removable="true"
+                          removeButtonClass="ui red button"
+                          :height="127"
+                          accept="image/jpeg, image/png, image/gif"
+                          buttonClass="ui button primary"
+                          :customStrings="{
                         upload: '<h1>Upload Thumbnail Image!</h1>',
                         drag: 'Drag and drop Thumbnail Image here'}"
-                      :src="project.imagePath"
-                    ></picture-input>
-                    <img
-                      :src="project.imagePath"
-                      alt="Thumbnail Image"
-                      class="img-responsive"
-                      width="185px"
-                      height="127px"
-                    />
+                          :src="project.imagePath"
+                        ></picture-input>
+                      </div>
+                    </div>
                   </div>
 
                   <div>
                     <label name="projectHeroPictureInput">Hero Image:</label>
-                    <picture-input
-                      ref="pictureInput2"
-                      @change="projectHeroPictureInputOnSelect"
-                      @remove="projectHeroPictureInputOnRemoved"
-                      :width="185"
-                      :removable="true"
-                      removeButtonClass="ui red button"
-                      :height="127"
-                      accept="image/jpeg, image/png, image/gif"
-                      buttonClass="ui button primary"
-                      :customStrings="{
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img
+                          :src="project.heroImage"
+                          alt="Hero Image"
+                          class="img-responsive"
+                          width="185px"
+                          height="127px"
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <picture-input
+                          ref="pictureInput2"
+                          @change="projectHeroPictureInputOnSelect"
+                          @remove="projectHeroPictureInputOnRemoved"
+                          :width="185"
+                          :removable="true"
+                          removeButtonClass="ui red button"
+                          :height="127"
+                          accept="image/jpeg, image/png, image/gif"
+                          buttonClass="ui button primary"
+                          :customStrings="{
                         upload: '<h1>Upload Hero Image!</h1>',
                         drag: 'Drag and drop Hero Image here'}"
-                    ></picture-input>
-                    <img
-                      :src="project.heroImage"
-                      alt="Hero Image"
-                      class="img-responsive"
-                      width="185px"
-                      height="127px"
-                    />
+                        ></picture-input>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -188,28 +200,34 @@
 
                 <div class="m-t-25">
                   <label name="pictureInput3">Section Image:</label>
-                  <picture-input
-                    ref="pictureInputSection"
-                    src
-                    @change="projectPictureInputOnSelect(counter)"
-                    @remove="projectPictureInputOnRemoved(counter)"
-                    :width="185"
-                    :removable="true"
-                    removeButtonClass="ui red button"
-                    :height="127"
-                    accept="image/jpeg, image/png, image/gif"
-                    buttonClass="ui button primary"
-                    :customStrings="{
+                  <div class="row">
+                    <div class="col-md-6">
+                      <img
+                        :src="section.imagePath"
+                        alt="Section Image"
+                        class="img-responsive"
+                        width="185px"
+                        height="127px"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <picture-input
+                        ref="pictureInputSection"
+                        src
+                        @change="projectPictureInputOnSelect(counter)"
+                        @remove="projectPictureInputOnRemoved(counter)"
+                        :width="185"
+                        :removable="true"
+                        removeButtonClass="ui red button"
+                        :height="127"
+                        accept="image/jpeg, image/png, image/gif"
+                        buttonClass="ui button primary"
+                        :customStrings="{
   upload: '<h1>Upload Section Image!</h1>',
   drag: 'Drag and drop Section Image here'}"
-                  ></picture-input>
-                  <img
-                    :src="section.imagePath"
-                    alt="Section Image"
-                    class="img-responsive"
-                    width="185px"
-                    height="127px"
-                  />
+                      ></picture-input>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
