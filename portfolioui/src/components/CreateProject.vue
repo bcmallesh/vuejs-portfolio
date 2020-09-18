@@ -44,7 +44,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="m-t-25">
+              <div class="m-t-25 mb-3">
                 <label name="projectThumbnailPictureInput">Thumbnail Image:</label>
                 <picture-input
                   ref="pictureInput1"
