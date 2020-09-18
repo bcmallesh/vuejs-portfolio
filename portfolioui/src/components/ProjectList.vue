@@ -65,7 +65,7 @@
                 <!-- <router-link :to="{name: 'DeleteProject', params: { id: projectinfo.id }}" class="btn btn-danger">Delete</router-link> -->
                 <td>
                 <button
-                  type="button"
+                  type="button" style="color: #dc3545!important"
                   class="btn btn-link red-danger" 
                   @click="deleteThisProject(projectinfo.id)"
                 ><i class="fa fa-trash"></i></button>
