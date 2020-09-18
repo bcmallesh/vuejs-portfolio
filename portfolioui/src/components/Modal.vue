@@ -11,15 +11,17 @@
             <strong>Work:</strong>
           </h3>
           <div v-for="work in modals.workLookupData">
-            <input
-              class="m-r-3"
-              type="checkbox"
-              :id="work.key"
-              :value="work.key"
-              v-model="selectedWorks"
-              @click="checkBoxClicked($event)"
-            />
-            <label :for="work.key">{{work.value}}</label>
+            <div class="form-group-checkbox">
+              <input
+                class="m-r-3"
+                type="checkbox"
+                :id="work.key"
+                :value="work.key"
+                v-model="selectedWorks"
+                @click="checkBoxClicked($event)"
+              />
+              <label :for="work.key">{{work.value}}</label>
+            </div>
           </div>
         </div>
 
@@ -28,15 +30,17 @@
             <strong>Type:</strong>
           </h3>
           <div v-for="type in modals.typeLookupData">
-            <input
-              class="m-r-3"
-              type="checkbox"
-              :id="type.key"
-              :value="type.key"
-              v-model="selectedTypes"
-              @click="checkBoxClicked($event)"
-            />
-            <label :for="type.key">{{type.value}}</label>
+            <div class="form-group-checkbox">
+              <input
+                class="m-r-3"
+                type="checkbox"
+                :id="type.key"
+                :value="type.key"
+                v-model="selectedTypes"
+                @click="checkBoxClicked($event)"
+              />
+              <label :for="type.key">{{type.value}}</label>
+            </div>
           </div>
         </div>
 
@@ -45,15 +49,17 @@
             <strong>Industry:</strong>
           </h3>
           <div v-for="industry in modals.industryLookupData">
-            <input
-              class="m-r-3"
-              type="checkbox"
-              :id="industry.key"
-              :value="industry.key"
-              v-model="selectedIndustries"
-              @click="checkBoxClicked($event)"
-            />
-            <label :for="industry.key">{{industry.value}}</label>
+            <div class="form-group-checkbox">
+              <input
+                class="m-r-3"
+                type="checkbox"
+                :id="industry.key"
+                :value="industry.key"
+                v-model="selectedIndustries"
+                @click="checkBoxClicked($event)"
+              />
+              <label :for="industry.key">{{industry.value}}</label>
+            </div>
           </div>
         </div>
       </div>

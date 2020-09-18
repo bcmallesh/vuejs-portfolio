@@ -83,13 +83,15 @@
           <div class="m-t-25">
             <label for="scopeofwork">Scope of work:</label>
             <div v-for="scopeOfWork in scopeOfWorks" v-bind:key="scopeOfWork.key">
-              <input
-                type="checkbox"
-                v-model="project.scopeofworks"
-                :id="scopeOfWork.key"
-                :value="scopeOfWork.value"
-              />
-              {{scopeOfWork.value}}
+              <div class="form-group-checkbox">
+                <input
+                  type="checkbox"
+                  v-model="project.scopeofworks"
+                  :id="scopeOfWork.key"
+                  :value="scopeOfWork.value"
+                />
+                <label>{{scopeOfWork.value}}</label>
+              </div>
             </div>
           </div>
           <hr />
@@ -186,8 +188,10 @@
                   <b>Work:</b>
                 </label>
                 <div v-for="work in works" v-bind:key="work.key">
-                  <input type="checkbox" v-model="project.works" :id="work.key" :value="work.key" />
-                  {{work.value}}
+                  <div class="form-group-checkbox">
+                    <input type="checkbox" v-model="project.works" :id="work.key" :value="work.key" />
+                    <label>{{work.value}}</label>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4">
@@ -195,8 +199,10 @@
                   <b>Type:</b>
                 </label>
                 <div v-for="type in types" v-bind:key="type.key">
-                  <input type="checkbox" v-model="project.types" :id="type.key" :value="type.key" />
-                  {{type.value}}
+                  <div class="form-group-checkbox">
+                    <input type="checkbox" v-model="project.types" :id="type.key" :value="type.key" />
+                    <label>{{type.value}}</label>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4">
@@ -204,13 +210,15 @@
                   <b>Industry:</b>
                 </label>
                 <div v-for="industry in industries" v-bind:key="industry.key">
-                  <input
-                    type="checkbox"
-                    v-model="project.industrys"
-                    :id="industry.key"
-                    :value="industry.key"
-                  />
-                  {{industry.value}}
+                  <div class="form-group-checkbox">
+                    <input
+                      type="checkbox"
+                      v-model="project.industrys"
+                      :id="industry.key"
+                      :value="industry.key"
+                    />
+                    <label>{{industry.value}}</label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -346,8 +354,8 @@ export default {
               type: "success",
               message: "Project  created successfully",
             });
-            alert('Project created successfully')
-             this.$router.push("/projects");
+            alert("Project created successfully");
+            this.$router.push("/projects");
           },
           (response) => {
             this.notifications.push({
