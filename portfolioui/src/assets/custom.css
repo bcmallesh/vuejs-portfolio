@@ -747,9 +747,14 @@ footer {
 .imgq {
   position: absolute;
   z-index: 2;
-  width: 30%;
-  left: 50%;
+  width: 100%;
+  left: 0%;
   top: -125%;
+  height: auto;
+}
+
+.img-h{
+  height: 125px;
 }
 
 .mb-25 {
