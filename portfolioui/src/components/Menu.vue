@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav id="navigation" class="navbar navbar-light">
+    <nav id="navigation" class="navbar navbar-light pt-4">
       <router-link to="/" activeClass="active" tag="a">
         <!-- <a class="navbar-brand" href="index.html"> -->
         <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />

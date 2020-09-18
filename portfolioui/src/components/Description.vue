@@ -2,7 +2,7 @@
   <div class="inner2">
     <header id="header">
       <div class="container">
-        <nav class="navbar navbar-light">
+        <nav class="navbar navbar-light pt-4">
           <router-link to="/" activeClass="active" tag="a">
           <!-- <a class="navbar-brand" href="index.html"> -->
             <img src="../assets/images/SVG/logo.svg" alt="EVRY" class="evry-logo" />
@@ -14,7 +14,7 @@
           </router-link>
         </nav>
         <div class="padding2x"></div>
-        <div class="content container">
+        <div class="content col-md-6">
           <h1>
             {{description.project_name}}
           </h1>
@@ -23,7 +23,7 @@
     </header>
     <div class="container">
       <section class="work main-box" id="boxinner">
-        <div class="row innerbox1">
+        <div class="row innerbox1 mb-5">
           <appSectionSummary :section_summary="description.section_summary"></appSectionSummary>
           <appSectionSummaryImage :section_summary_image="description.section_summary"></appSectionSummaryImage>
           <div class="boxsm">
