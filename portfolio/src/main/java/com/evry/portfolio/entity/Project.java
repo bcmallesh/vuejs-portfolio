@@ -1,7 +1,10 @@
 package com.evry.portfolio.entity;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -47,7 +50,7 @@ public class Project {
 	@Column(name = "INDUSTRYS")
 	private String industrys;
 	@OneToMany(mappedBy = "projectId", cascade= CascadeType.ALL, orphanRemoval = true)
-	private Set<Section> sections = new HashSet<Section>();
+	private List<Section> sections = new ArrayList<Section>();
 
 	public Long getId() {
 		return id;
@@ -145,11 +148,11 @@ public class Project {
 		this.industrys = industrys;
 	}
 
-	public Set<Section> getSections() {
+	public List<Section> getSections() {
 		return sections;
 	}
 
-	public void setSections(Set<Section> sections) {
+	public void setSections(List<Section> sections) {
 		this.sections = sections;
 	}
 

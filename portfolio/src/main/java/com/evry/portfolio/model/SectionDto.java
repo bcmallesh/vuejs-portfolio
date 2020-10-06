@@ -2,6 +2,8 @@ package com.evry.portfolio.model;
 
 import java.sql.Blob;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class SectionDto {
 
 	private Long id;
@@ -10,6 +12,10 @@ public class SectionDto {
 	private String sectionContent;
 	private Blob sectionimage;
 	private String sectionimageName;
+	private Integer sectionImageIndex;
+	private String sectionImagePath;
+	private MultipartFile sectionMultipartFile;
+	//private String sectionImageName
 	private String pictureInputSection;
 	Long sectionId;
 	String imagePath;
@@ -80,6 +86,24 @@ public class SectionDto {
 	}
 	public void setPictureInputSection(String pictureInputSection) {
 		this.pictureInputSection = pictureInputSection;
+	}
+	public Integer getSectionImageIndex() {
+		return sectionImageIndex;
+	}
+	public void setSectionImageIndex(Integer sectionImageIndex) {
+		this.sectionImageIndex = sectionImageIndex;
+	}
+	public String getSectionImagePath() {
+		return sectionImagePath;
+	}
+	public void setSectionImagePath(String sectionImagePath) {
+		this.sectionImagePath = sectionImagePath;
+	}
+	public MultipartFile getSectionMultipartFile() {
+		return sectionMultipartFile;
+	}
+	public void setSectionMultipartFile(MultipartFile sectionMultipartFile) {
+		this.sectionMultipartFile = sectionMultipartFile;
 	}
 	
 }

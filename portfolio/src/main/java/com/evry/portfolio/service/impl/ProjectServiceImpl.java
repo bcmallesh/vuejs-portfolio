@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -307,7 +308,7 @@ public class ProjectServiceImpl implements ProjectService {
 		projectEntity.setTypes(StringUtils.collectionToDelimitedString(projectDto.getTypes(), ","));
 		projectEntity.setWorks(StringUtils.collectionToDelimitedString(projectDto.getWorks(), ","));
 
-		Set<Section> sections = new HashSet<Section>();
+		List<Section> sections = new ArrayList<Section>();
 		projectDto.getSections().forEach(sectionDto -> {
 			Section sectionEntity = new Section();
 			sectionEntity.setSectionContent(sectionDto.getSectionContent());
@@ -349,7 +350,7 @@ public class ProjectServiceImpl implements ProjectService {
 		projectEntity.setTypes(StringUtils.collectionToDelimitedString(projectDto.getTypes(), ","));
 		projectEntity.setWorks(StringUtils.collectionToDelimitedString(projectDto.getWorks(), ","));
 
-		Set<Section> sections = new HashSet<Section>();
+		List<Section> sections = new ArrayList<Section>();
 		Map<Long,Section> sectionsMap=new HashMap<>();
 		
 		projectEntity.getSections().forEach(section -> {
