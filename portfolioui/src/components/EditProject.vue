@@ -363,17 +363,18 @@ export default {
           console.log(e);
         });
     },
-    projectPictureInputOnSelect(counter) {
-      this.projectSectionPictureInputFile = this.$refs.pictureInputSection[
-        counter
-      ].file;
-
-      this.sectionFiles.splice(counter, 0, this.projectSectionPictureInputFile);
-      //this.sectionfiles.push({sectionIndex: projectSectionPictureInputFile});
-      //  this.sectionfiles.push(sectionIndex, this.projectSectionPictureInputFile);
+     projectPictureInputOnSelect(counter) {
+      var selectedFile = this.$refs.pictureInputSection[counter].file;
+      this.sectionFiles[counter]=selectedFile;
+      this.project.sections[counter].sectionimageName=selectedFile.name;
+      this.project.sections[counter].sectionImageIndex=counter;
+      this.project.sections[counter].sectionImagePath=selectedFile.path;
     },
     projectPictureInputOnRemoved(counter) {
-      // this.sectionfiles.splice(sectionIndex, 1)
+       this.sectionFiles[counter]=null;
+       this.project.sections[counter].sectionimageName=null;
+       this.project.sections[counter].sectionImageIndex=null;
+       this.project.sections[counter].sectionImagePath=null;
     },
     projectThumbnailPictureInputOnSelect() {
       const projectThumbnailPictureInputFile = this.$refs.pictureInput1.file;
@@ -411,6 +412,9 @@ export default {
         sectionLayout: "",
         sectionTitle: "",
         sectionContent: "",
+        sectionimageName:null,
+        sectionImageIndex:null,
+        sectionImagePath:null
         //sectionimage:''
       });
     },

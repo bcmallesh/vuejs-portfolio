@@ -261,7 +261,7 @@ export default {
       sectionFiles: [],
       // fileMultiple: [],
       editor: ClassicEditor,
-
+      formData : new FormData(),
       editorConfig: {
         toolbar: ["bold", "italic", "bulletedList", "numberedList"],
       },
@@ -287,20 +287,21 @@ export default {
 
   methods: {
     projectPictureInputOnSelect(counter) {
-      this.projectSectionPictureInputFile = this.$refs.pictureInputSection[
-        counter
-      ].file;
-
-      this.sectionFiles.splice(counter, 0, this.projectSectionPictureInputFile);
-      //this.sectionfiles.push({sectionIndex: projectSectionPictureInputFile});
-      //  this.sectionfiles.push(sectionIndex, this.projectSectionPictureInputFile);
+      var selectedFile = this.$refs.pictureInputSection[counter].file;
+      this.sectionFiles[counter]=selectedFile;
+      this.project.sections[counter].sectionimageName=selectedFile.name;
+      this.project.sections[counter].sectionImageIndex=counter;
+      this.project.sections[counter].sectionImagePath=selectedFile.path;
+     // this.project.sections[counter].multipartfile=selectedFile;
     },
     projectPictureInputOnRemoved(counter) {
-      // this.sectionfiles.splice(sectionIndex, 1)
+       this.sectionFiles[counter]=null;
+       this.project.sections[counter].sectionimageName=null;
+       this.project.sections[counter].sectionImageIndex=null;
+       this.project.sections[counter].sectionImagePath=null;
     },
     projectThumbnailPictureInputOnSelect() {
       const projectThumbnailPictureInputFile = this.$refs.pictureInput1.file;
-
       this.projectThumbnailPictureInputFile = projectThumbnailPictureInputFile;
     },
     projectThumbnailPictureInputOnRemoved() {
@@ -308,13 +309,11 @@ export default {
     },
     projectHeroPictureInputOnSelect() {
       const projectHeroPictureInputFile = this.$refs.pictureInput2.file;
-
       this.projectHeroPictureInputFile = projectHeroPictureInputFile;
     },
     projectHeroPictureInputOnRemoved() {
       this.projectHeroPictureInputFile = "";
     },
-
     retrieveLookupData() {
       ProjectInfoDataService.getLookupData()
         .then((response) => {
@@ -334,11 +333,15 @@ export default {
         sectionLayout: "",
         sectionTitle: "",
         sectionContent: "",
+        sectionimageName:null,
+        sectionImageIndex:null,
+        sectionImagePath:null
         //sectionimage:''
       });
     },
     deleteProjectSection(counter) {
       this.project.sections.splice(counter, 1);
+      this.sectionFiles.splice(counter, 1);
     },
 
     addProjectInfo: function () {

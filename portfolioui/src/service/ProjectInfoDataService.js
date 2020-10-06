@@ -37,7 +37,7 @@ class ProjectDataService {
     formData.append('thumnailimage', thumnailimage);
     formData.append('heroimage', heroimage);
     for (let i = 0; i < sectionfiles.length; i++) {
-      formData.append("sectionfiles", sectionfiles[i]);
+      formData.append("sectionfiles", sectionfiles[i]); 
   }
 
 
@@ -47,7 +47,7 @@ class ProjectDataService {
     formData.append('projectdata', new Blob([JSON.stringify(data)], {
       type: "application/json"
   }));
-
+ 
     return axios.post(`${API_URL}`+"/createproject", formData, {
       headers: {
           //'Content-Type': 'application/json',
