@@ -87,7 +87,7 @@ public class ProjectController {
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/previewproject", method = RequestMethod.POST, consumes = { "multipart/form-data",
 			"multipart/form-data", "multipart/form-data" })
-	public ProjectSummary PreviewProjectInfo(@ModelAttribute ProjectDto projectdata,
+	public ProjectSummary PreviewProjectInfo(@RequestPart("projectdata") ProjectDto projectdata,
 			@RequestParam(name = "thumnailimage", required = false) MultipartFile thumnailimage,
 			@RequestParam(name = "heroimage", required = false) MultipartFile heroimage,
 			@RequestParam("sectionfiles") MultipartFile[] sectionfiles) {
