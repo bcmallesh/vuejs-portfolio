@@ -4,11 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.evry.portfolio.dao.ProjectDao;
-
 import com.evry.portfolio.entity.Project;
 import com.evry.portfolio.entity.Section;
 import com.evry.portfolio.model.ProjectDto;
@@ -160,7 +156,7 @@ public class ProjectServiceImpl implements ProjectService {
 			sqlex.printStackTrace();
 		}
 
-		section_summary.setSummary_heading(projectEntity.getProjectName());
+		section_summary.setSummary_heading(projectEntity.getShortSummary());
 
 		String[] tagsArray = projectEntity.getScopeofworks().split(",");
 		ArrayList<TagDto> tags = new ArrayList<TagDto>();
@@ -436,7 +432,7 @@ public class ProjectServiceImpl implements ProjectService {
 			sqlex.printStackTrace();
 		}
 
-		section_summary.setSummary_heading(projectDto.getProjectName());
+		section_summary.setSummary_heading(projectDto.getShortSummary());
 
 		// String [] tagsArray=projectDto.getScopeofworks().split(",");
 		ArrayList<TagDto> tags = new ArrayList<TagDto>();
