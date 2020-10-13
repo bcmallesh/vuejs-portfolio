@@ -23,7 +23,6 @@ const router = new Router({
             component: () => import("./components/Description"),
             props: true,
         },
-       
         {
             path: "/login",
             name: "Login",

@@ -227,6 +227,7 @@
           <div class="row float-right">
             <button class="btn btn-primary m-r-5 colr">CANCEL</button>
             <!-- <button class="btn btn-primary m-r-5 colr" @click="previewProjectInfo">PREVIEW</button> -->
+             <router-link  target="_blank"  :to="{path:'/description',query:{preview: true}} " @click.native="previewProjectInfo">PREVIEW</router-link>
             <button class="btn btn-primary colr">SAVE</button>
           </div>
         </form>
@@ -251,11 +252,11 @@ export default {
   components: {
     Menu,
     notification: Notification,
-
     PictureInput,
   },
   data() {
     return {
+      previewData:{},
       projectThumbnailPictureInputFile: "",
       projectHeroPictureInputFile: "",
       sectionFiles: [],
@@ -379,11 +380,9 @@ export default {
         this.project
       )
         .then((response) => {
-          console.log(response.data);
-          this.$router.push({
-            path: "/description",
-            query: { preview: "true", description: response.data },
-          });
+          this.previewData = response.data; 
+          console.log(' this.previewData : '+JSON.stringify( this.previewData)); 
+          localStorage.setItem('previewData',JSON.stringify(this.previewData))
         })
         .catch((e) => {
           console.log(e);

@@ -63,28 +63,26 @@ export default {
       id: this.$route.query.id,
       preview: this.$route.query.preview,
       description,
-      descriptionTo : this.$route.query.description
+      descriptionTo : this.$route.query.description,
     };
 
   },
   created() {
-    console.log(this.preview);
     console.log("created hook for description");
-    if (this.preview == "true") {
-      let routeData = this.$router.resolve(
-{
-path:'/description', 
-query: {preview:"true", id :description.data}
-});
-window.open(routeData.href, '_blank');
+    this.previewData = JSON.parse(localStorage.getItem('previewData'));
+    if (this.preview == "true" && this.previewData ) {
+      console.log('previewData:',this.previewData);
+      this.description = this.previewData;
 
     } else {
       // this will have a axios call
     //this.description = description
     axios.get(`http://localhost:8060/portfolio/projects/${this.id}`)
     .then(response => {
-    // console.log("axios call");
+     console.log("axios call");
+     console.log("this.description: ",this.description);
     this.description = response.data;
+
     }); 
     }
   },
