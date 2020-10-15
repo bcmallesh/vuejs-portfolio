@@ -21,6 +21,17 @@ public class SectionDto {
 	String imagePath;
 	String heading;
 	String description;
+	
+	
+	@Override
+	public String toString() {
+		return "SectionDto [id=" + id + ", sectionTitle=" + sectionTitle + ", sectionLayout=" + sectionLayout
+				+ ", sectionContent=" + sectionContent + ", sectionimage=" + sectionimage + ", sectionimageName="
+				+ sectionimageName + ", sectionImageIndex=" + sectionImageIndex + ", sectionImagePath="
+				+ sectionImagePath + ", sectionMultipartFile=" + sectionMultipartFile + ", pictureInputSection="
+				+ pictureInputSection + ", sectionId=" + sectionId + ", imagePath=" + imagePath + ", heading=" + heading
+				+ ", description=" + description + "]";
+	}
 	public Long getId() {
 		return id;
 	}

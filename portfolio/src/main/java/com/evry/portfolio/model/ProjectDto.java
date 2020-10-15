@@ -175,5 +175,16 @@ public class ProjectDto {
 	public void setPictureInput2(String pictureInput2) {
 		this.pictureInput2 = pictureInput2;
 	}
+	@Override
+	public String toString() {
+		return "ProjectDto [id=" + id + ", projectName=" + projectName + ", thumnailBlob=" + thumnailBlob
+				+ ", thumnailimageName=" + thumnailimageName + ", heroBlob=" + heroBlob + ", heroimageName="
+				+ heroimageName + ", shortSummary=" + shortSummary + ", category=" + category + ", works=" + works
+				+ ", types=" + types + ", industrys=" + industrys + ", scopeofworks=" + scopeofworks + ", sections="
+				+ sections + ", work=" + work + ", type=" + type + ", industry=" + industry + ", image=" + image
+				+ ", imagePath=" + imagePath + ", heroImage=" + heroImage + ", heroImagePath=" + heroImagePath
+				+ ", name=" + name + ", description=" + description + ", pictureInput1=" + pictureInput1
+				+ ", pictureInput2=" + pictureInput2 + "]";
+	}
     
 }

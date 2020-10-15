@@ -155,7 +155,7 @@ public class ProjectServiceImpl implements ProjectService {
 		} catch (SQLException sqlex) {
 			sqlex.printStackTrace();
 		}
-
+		System.out.println("short summary ########: "+projectEntity.getShortSummary());
 		section_summary.setSummary_heading(projectEntity.getShortSummary());
 
 		String[] tagsArray = projectEntity.getScopeofworks().split(",");
@@ -421,7 +421,9 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 
 		try {
-			if (null != projectDto.getHeroImage() && null!=projectDto.getHeroimageName()) {
+			System.out.println("projectDto.getHeroimageName() 2222222222222222 : ");
+			if (null != projectDto.getHeroBlob() && null!=projectDto.getHeroimageName()) {
+				System.out.println("projectDto.getHeroimageName() 33333333 : "+projectDto.getHeroimageName());
 				byte[] heroPhotoBytes = projectDto.getHeroBlob().getBytes(1l, (int) projectDto.getHeroBlob().length());
 
 				fsu.storeFile(context, heroPhotoBytes, "project-hero-" + projectDto.getHeroimageName(), env1);
