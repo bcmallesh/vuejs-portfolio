@@ -1,8 +1,6 @@
 package com.evry.portfolio.controller;
 
 import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -10,7 +8,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -94,6 +91,7 @@ public class ProjectController {
 
 		try {
 			logger.info("projectdata ==" + projectdata.getProjectName());
+			logger.info("projectdata id ==" + projectdata.getId());
 			if (null != thumnailimage) {
 				Blob thumnailimageBlob = new javax.sql.rowset.serial.SerialBlob(thumnailimage.getBytes());
 				if (null != thumnailimageBlob) {
@@ -112,11 +110,13 @@ public class ProjectController {
 			int index = 0;
 			for(SectionDto sdto:projectdata.getSections()) {
 				if(null!=sdto.getSectionimageName()) {
+					if(null!=sectionfiles && sectionfiles.length>0) {
 					if(sectionfiles[index].getOriginalFilename().equals(sdto.getSectionimageName())) {
 						logger.info(sdto.getSectionImageIndex()+" :: "+sdto.getSectionimageName()+" :: "+sectionfiles[index].getOriginalFilename());
                         Blob sectionfileBlob = new javax.sql.rowset.serial.SerialBlob(sectionfiles[index].getBytes());
                         sdto.setSectionimage(sectionfileBlob);
 					    index = index + 1;
+					}
 					}
 				}	
 			}
@@ -124,6 +124,7 @@ public class ProjectController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		
 		return projectService.preview(projectdata);
 	}
 
