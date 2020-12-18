@@ -155,7 +155,7 @@ public class ProjectServiceImpl implements ProjectService {
 		} catch (SQLException sqlex) {
 			sqlex.printStackTrace();
 		}
-
+		System.out.println("short summary ########: "+projectEntity.getShortSummary());
 		section_summary.setSummary_heading(projectEntity.getShortSummary());
 
 		String[] tagsArray = projectEntity.getScopeofworks().split(",");
@@ -399,74 +399,167 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public ProjectSummary preview(ProjectDto projectDto) {
 		ProjectSummary projectSummary = new ProjectSummary();
-		SectionSummary section_summary = new SectionSummary();
-		ArrayList<SectionDto> sections = new ArrayList<SectionDto>();
-		// project image
-		String[] requestStringArray = request.getRequestURL().toString().split("/");
-		String applicationPath = requestStringArray[0] + "//" + requestStringArray[2] + "/" + requestStringArray[3];
-		System.out.println("applicationPath======>" + applicationPath);
-		FileStroreUtil fsu = new FileStroreUtil();
-		try {
-			if (null != projectDto.getThumnailBlob() && null!=projectDto.getThumnailimageName()) {
-				byte[] thumbnailPhotoBytes = projectDto.getThumnailBlob().getBytes(1l,
-						(int) projectDto.getThumnailBlob().length());
-
-				fsu.storeFile(context, thumbnailPhotoBytes, "project-thumbnail-" + projectDto.getThumnailimageName(),
-						env1);
-				section_summary.setSummary_image(applicationPath + "/photos/projectimages/" + "project-thumbnail-"
-						+ projectDto.getThumnailimageName());
-			}
-		} catch (SQLException sqlex) {
-			sqlex.printStackTrace();
-		}
-
-		try {
-			if (null != projectDto.getHeroImage() && null!=projectDto.getHeroimageName()) {
-				byte[] heroPhotoBytes = projectDto.getHeroBlob().getBytes(1l, (int) projectDto.getHeroBlob().length());
-
-				fsu.storeFile(context, heroPhotoBytes, "project-hero-" + projectDto.getHeroimageName(), env1);
-				section_summary.setSummary_hero_image(
-						applicationPath + "/photos/projectimages/" + "project-hero-" + projectDto.getHeroimageName());
-			}
-		} catch (SQLException sqlex) {
-			sqlex.printStackTrace();
-		}
-
-		section_summary.setSummary_heading(projectDto.getShortSummary());
-
-		// String [] tagsArray=projectDto.getScopeofworks().split(",");
-		ArrayList<TagDto> tags = new ArrayList<TagDto>();
-		for (String tag : projectDto.getScopeofworks()) {
-			TagDto tagDto = new TagDto();
-			tagDto.setMessage(tag);
-			tags.add(tagDto);
-		}
-		projectDto.getSections().forEach(section -> {
-			SectionDto sectionDto = new SectionDto();
-			// section image
+		if(null==projectDto.getId()) {
+			SectionSummary section_summary = new SectionSummary();
+			ArrayList<SectionDto> sections = new ArrayList<SectionDto>();
+			// project image
+			String[] requestStringArray = request.getRequestURL().toString().split("/");
+			String applicationPath = requestStringArray[0] + "//" + requestStringArray[2] + "/" + requestStringArray[3];
+			System.out.println("applicationPath======>" + applicationPath);
+			FileStroreUtil fsu = new FileStroreUtil();
 			try {
-				if (null != section.getSectionimage()) {
-					byte[] sectionPhotoBytes = section.getSectionimage().getBytes(1l,
-							(int) section.getSectionimage().length());
+				if (null != projectDto.getThumnailBlob() && null!=projectDto.getThumnailimageName()) {
+					byte[] thumbnailPhotoBytes = projectDto.getThumnailBlob().getBytes(1l,
+							(int) projectDto.getThumnailBlob().length());
 
-					fsu.storeFile(context, sectionPhotoBytes, "section-" + section.getSectionimageName(), env1);
-					sectionDto.setImagePath(
-							applicationPath + "/photos/projectimages/" + "section-" + section.getSectionimageName());
+					fsu.storeFile(context, thumbnailPhotoBytes, "project-thumbnail-" + projectDto.getThumnailimageName(),
+							env1);
+					section_summary.setSummary_image(applicationPath + "/photos/projectimages/" + "project-thumbnail-"
+							+ projectDto.getThumnailimageName());
 				}
 			} catch (SQLException sqlex) {
 				sqlex.printStackTrace();
 			}
-			sectionDto.setSectionId(section.getId());
-			sectionDto.setHeading(section.getSectionTitle());
-			sectionDto.setDescription(section.getSectionContent());
-			sectionDto.setSectionLayout(section.getSectionLayout());
-			sections.add(sectionDto);
-		});
-		projectSummary.setProject_name(projectDto.getProjectName());
-		projectSummary.setSection_summary(section_summary);
-		projectSummary.setTags(tags);
-		projectSummary.setSections(sections);
 
+			try {
+				System.out.println("projectDto.getHeroimageName() 2222222222222222 : ");
+				if (null != projectDto.getHeroBlob() && null!=projectDto.getHeroimageName()) {
+					System.out.println("projectDto.getHeroimageName() 33333333 : "+projectDto.getHeroimageName());
+					byte[] heroPhotoBytes = projectDto.getHeroBlob().getBytes(1l, (int) projectDto.getHeroBlob().length());
+
+					fsu.storeFile(context, heroPhotoBytes, "project-hero-" + projectDto.getHeroimageName(), env1);
+					section_summary.setSummary_hero_image(
+							applicationPath + "/photos/projectimages/" + "project-hero-" + projectDto.getHeroimageName());
+				}
+			} catch (SQLException sqlex) {
+				sqlex.printStackTrace();
+			}
+
+			section_summary.setSummary_heading(projectDto.getShortSummary());
+
+			// String [] tagsArray=projectDto.getScopeofworks().split(",");
+			ArrayList<TagDto> tags = new ArrayList<TagDto>();
+			for (String tag : projectDto.getScopeofworks()) {
+				TagDto tagDto = new TagDto();
+				tagDto.setMessage(tag);
+				tags.add(tagDto);
+			}
+			projectDto.getSections().forEach(section -> {
+				SectionDto sectionDto = new SectionDto();
+				// section image
+				try {
+					if (null != section.getSectionimage()) {
+						byte[] sectionPhotoBytes = section.getSectionimage().getBytes(1l,
+								(int) section.getSectionimage().length());
+
+						fsu.storeFile(context, sectionPhotoBytes, "section-" + section.getSectionimageName(), env1);
+						sectionDto.setImagePath(
+								applicationPath + "/photos/projectimages/" + "section-" + section.getSectionimageName());
+					}
+				} catch (SQLException sqlex) {
+					sqlex.printStackTrace();
+				}
+				sectionDto.setSectionId(section.getId());
+				sectionDto.setHeading(section.getSectionTitle());
+				sectionDto.setDescription(section.getSectionContent());
+				sectionDto.setSectionLayout(section.getSectionLayout());
+				sections.add(sectionDto);
+			});
+			projectSummary.setProject_name(projectDto.getProjectName());
+			projectSummary.setSection_summary(section_summary);
+			projectSummary.setTags(tags);
+			projectSummary.setSections(sections);
+
+			
+		}else {
+			projectSummary.setId(projectDto.getId());
+			SectionSummary section_summary = new SectionSummary();
+			ArrayList<SectionDto> sections = new ArrayList<SectionDto>();
+			// project image
+			String[] requestStringArray = request.getRequestURL().toString().split("/");
+			String applicationPath = requestStringArray[0] + "//" + requestStringArray[2] + "/" + requestStringArray[3];
+			System.out.println("applicationPath======>" + applicationPath);
+			FileStroreUtil fsu = new FileStroreUtil();
+			try {
+				System.out.println("projectDto.getImagePath()==========="+projectDto.getImagePath());
+				if (null != projectDto.getThumnailBlob() && null!=projectDto.getThumnailimageName()) {
+					byte[] thumbnailPhotoBytes = projectDto.getThumnailBlob().getBytes(1l,
+							(int) projectDto.getThumnailBlob().length());
+
+					fsu.storeFile(context, thumbnailPhotoBytes, "project-thumbnail-" + projectDto.getThumnailimageName(),
+							env1);
+					section_summary.setSummary_image(applicationPath + "/photos/projectimages/" + "project-thumbnail-"
+							+ projectDto.getThumnailimageName());
+				}
+				
+				else if (null != projectDto.getImagePath()) {
+					
+					section_summary.setSummary_image(projectDto.getImagePath());
+				}
+			} catch (SQLException sqlex) {
+				sqlex.printStackTrace();
+			}
+
+			try {
+				System.out.println("projectDto.getHeroimageName() 2222222222222222 : ");
+				System.out.println("projectDto.getHeroImage()==========="+projectDto.getHeroImage());
+				if (null != projectDto.getHeroBlob() && null!=projectDto.getHeroimageName()) {
+					System.out.println("projectDto.getHeroimageName() 33333333 : "+projectDto.getHeroimageName());
+					byte[] heroPhotoBytes = projectDto.getHeroBlob().getBytes(1l, (int) projectDto.getHeroBlob().length());
+
+					fsu.storeFile(context, heroPhotoBytes, "project-hero-" + projectDto.getHeroimageName(), env1);
+					section_summary.setSummary_hero_image(
+							applicationPath + "/photos/projectimages/" + "project-hero-" + projectDto.getHeroimageName());
+					
+				}else if (null != projectDto.getHeroImage()) {
+					
+					section_summary.setSummary_hero_image(projectDto.getHeroImage());
+				}
+			} catch (SQLException sqlex) {
+				sqlex.printStackTrace();
+			}
+
+			section_summary.setSummary_heading(projectDto.getShortSummary());
+
+			// String [] tagsArray=projectDto.getScopeofworks().split(",");
+			ArrayList<TagDto> tags = new ArrayList<TagDto>();
+			for (String tag : projectDto.getScopeofworks()) {
+				TagDto tagDto = new TagDto();
+				tagDto.setMessage(tag);
+				tags.add(tagDto);
+			}
+			projectDto.getSections().forEach(section -> {
+				SectionDto sectionDto = new SectionDto();
+				// section image
+				try {
+					System.out.println("section.getImagePath()======"+section.getImagePath());
+					
+					if (null != section.getSectionimage()) {
+						byte[] sectionPhotoBytes = section.getSectionimage().getBytes(1l,
+								(int) section.getSectionimage().length());
+
+						fsu.storeFile(context, sectionPhotoBytes, "section-" + section.getSectionimageName(), env1);
+						sectionDto.setImagePath(
+								applicationPath + "/photos/projectimages/" + "section-" + section.getSectionimageName());
+					}else if(null!=section.getImagePath()) {
+						sectionDto.setImagePath(section.getImagePath());
+					}
+				} catch (SQLException sqlex) {
+					sqlex.printStackTrace();
+				}
+				sectionDto.setSectionId(section.getId());
+				sectionDto.setHeading(section.getSectionTitle());
+				sectionDto.setDescription(section.getSectionContent());
+				sectionDto.setSectionLayout(section.getSectionLayout());
+				sections.add(sectionDto);
+			});
+			projectSummary.setProject_name(projectDto.getProjectName());
+			projectSummary.setSection_summary(section_summary);
+			projectSummary.setTags(tags);
+			projectSummary.setSections(sections);
+
+		}
+		
 		return projectSummary;
 	}
 

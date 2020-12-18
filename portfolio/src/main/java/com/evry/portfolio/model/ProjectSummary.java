@@ -38,6 +38,11 @@ public class ProjectSummary {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	@Override
+	public String toString() {
+		return "ProjectSummary [id=" + id + ", project_name=" + project_name + ", section_summary=" + section_summary
+				+ ", tags=" + tags + ", sections=" + sections + "]";
+	}
 	
-
+	
 }
