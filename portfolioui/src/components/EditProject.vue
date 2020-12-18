@@ -291,7 +291,8 @@
             <div class="row float-right">
               <button class="btn btn-primary m-r-5 colr">CANCEL</button>
               <!-- <button class="btn btn-primary m-r-5 colr" @click="previewProjectInfo">PREVIEW</button> -->
-              <router-link  target="_blank"  :to="{path:'/description',query:{preview: true}} " @click.native="previewProjectInfo">PREVIEW</router-link>
+              <button class="btn btn-primary m-r-5 colr"><router-link  class="text-white" target="_blank"  :to="{path:'/description',query:{preview: true}} " @click.native="previewProjectInfo">PREVIEW</router-link>
+              </button>
               <button class="btn btn-primary colr">UPDATE</button>
             </div>
           </div>
@@ -433,10 +434,12 @@ export default {
       )
         .then(
           (response) => {
+            window.scrollTo(0,0);
             this.notifications.push({
               type: "success",
               message: "Project  updated successfully",
-            });
+            })
+            setTimeout(() =>this.$router.push({path :  '/projects' }),  2000 )            
           },
           (response) => {
             this.notifications.push({

@@ -69,6 +69,7 @@ export default {
   },
   created() {
     console.log("created hook for description");
+    window.scrollTo(0,0)
     this.previewData = JSON.parse(localStorage.getItem('previewData'));
     if (this.preview == "true" && this.previewData ) {
       console.log('previewData:',this.previewData);
